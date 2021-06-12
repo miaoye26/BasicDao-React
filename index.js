@@ -44,9 +44,9 @@ class App extends React.Component {
 
 class Player extends React.Component {
   random() { return reach.hasRandom.random(); }
-  async getHand() { // Fun([], UInt)
+  async getVote(aliceProposal, bobProposal) { // Fun([], UInt)
     const hand = await new Promise(resolveHandP => {
-      this.setState({view: 'GetVote', playable: true, resolveHandP});
+      this.setState({view: 'GetVote', playable: true, aliceProposal, bobProposal, resolveHandP});
     });
     this.setState({view: 'WaitingForResults', hand});
     return VoteToInt[hand];
@@ -103,12 +103,10 @@ class Attacher extends Player {
     this.setState({view: 'Attaching'});
     backend.Bob(ctc, this);
   }
-  async acceptWager(wagerAtomic) { // Fun([UInt], Null)
+  async acceptWager(wagerAtomic, aliceProposal ,bobProposal ) { // Fun([UInt] Bytes, Bytes, Null)
     const wager = reach.formatCurrency(wagerAtomic, 4);
-    this.aliceProposal = this.state.aliceProposal;
-    this.bobProposal = this.state.bobProposal;
     return await new Promise(resolveAcceptedP => {
-      this.setState({view: 'AcceptTerms', wager, resolveAcceptedP});
+      this.setState({view: 'AcceptTerms', wager, aliceProposal, bobProposal, resolveAcceptedP});
     });
   }
   termsAccepted() {

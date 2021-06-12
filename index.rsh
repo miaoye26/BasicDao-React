@@ -25,7 +25,7 @@ const Player =
         aliceProposal: Bytes(1000),
         bobProposal: Bytes(1000),
         findOutcome: Fun([UInt, UInt], UInt),
-        getHand: Fun([], UInt),
+        getVote: Fun([Bytes(1000), Bytes(1000)], UInt),
         seeOutcome: Fun([UInt], Null),
         informTimeout: Fun([], Null) };
 const Alice =
@@ -33,7 +33,7 @@ const Alice =
         wager: UInt };
 const Bob =
       { ...Player,
-        acceptWager: Fun([UInt], Null) };
+        acceptWager: Fun([UInt, Bytes(1000), Bytes(1000)], Null) };
 
 const DEADLINE = 10;
 export const main =
@@ -54,7 +54,7 @@ export const main =
       commit();
 
       B.only(() => {
-        interact.acceptWager(wager); });
+        interact.acceptWager(wager, aliceProposal, bobProposal); });
       B.pay(wager)
         .timeout(DEADLINE, () => closeTo(A, informTimeout));
 
@@ -64,7 +64,7 @@ export const main =
         commit();
 
         A.only(() => {
-          const _handA = interact.getHand();
+          const _handA = interact.getVote(aliceProposal, bobProposal);
           const [_commitA, _saltA] = makeCommitment(interact, _handA);
           const commitA = declassify(_commitA); });
         A.publish(commitA)
@@ -73,7 +73,7 @@ export const main =
 
         unknowable(B, A(_handA, _saltA));
         B.only(() => {
-          const handB = declassify(interact.getHand());
+          const handB = declassify(interact.getVote(aliceProposal, bobProposal));
           interact.log(handB); });
         B.publish(handB)
           .timeout(DEADLINE, () => closeTo(A, informTimeout));
@@ -87,7 +87,7 @@ export const main =
         checkCommitment(commitA, saltA, handA);
         commit();
 
-        if((handA == handB) && (handA == 0)){
+        if((handA == handB) && (handA == 0)) {
           outcome = 0;
         }
         else if(handA == handB && handA == 1 ){
