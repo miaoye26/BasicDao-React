@@ -105,6 +105,8 @@ class Attacher extends Player {
   }
   async acceptWager(wagerAtomic) { // Fun([UInt], Null)
     const wager = reach.formatCurrency(wagerAtomic, 4);
+    this.aliceProposal = this.state.aliceProposal;
+    this.bobProposal = this.state.bobProposal;
     return await new Promise(resolveAcceptedP => {
       this.setState({view: 'AcceptTerms', wager, resolveAcceptedP});
     });
