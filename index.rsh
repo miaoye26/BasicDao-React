@@ -86,10 +86,9 @@ export const main =
           .timeout(DEADLINE, () => closeTo(B, informTimeout));
         checkCommitment(commitA, saltA, handA);
 
-        outcome = 
-        handA != handB ? DIFF :
-        handA == 0 ? 0 :
-        handA == 1  ? 1 :
+        outcome =
+        ((handA == handB) && (handA == 0)) ? 0:
+        ((handA == handB) && (handA == 1)) ? 1:
         DIFF;
 
         continue; 
@@ -107,6 +106,11 @@ export const main =
           handA != handB ? DIFF :
           handA == 0 ? 0 :
           handA == 1  ? 1 :
+          DIFF;
+
+          outcome =
+          ((handA == handB) && (handA == 0)) ? 0:
+          ((handA == handB) && (handA == 1)) ? 1:
           DIFF;
 
         if((handA == handB) && (handA == 0)){

@@ -105,7 +105,7 @@ exports.Deploying = class extends React.Component {
     return (
       
       <div>
-         Wager (pay to deploy): <strong>{wager}</strong> {standardUnit}
+         Wager (pay to vote): <strong>{wager}</strong> {standardUnit}
         <br />
         CEO Alice Proposal: <strong>{aliceProposal}</strong>
         <br />
