@@ -16,8 +16,6 @@ services:
       - REACT_APP_REACH_CONNECTOR_MODE=ETH-browser
       - REACT_APP_REACH_ISOLATED_NETWORK=
 
-    # Does not technically depend on ethereum-devnet.
-    # This is just to get it to run both.
     depends_on:
       - ethereum-devnet
 
@@ -25,6 +23,10 @@ services:
     image: reachsh/ethereum-devnet:0.1
     ports:
       - '8545:8545'
+  devnet-cfx:
+    image: reachsh/devnet-cfx:0.1
+    ports:
+      - '12537:12537'
   algorand-devnet:
     image: reachsh/algorand-devnet:0.1
     depends_on:

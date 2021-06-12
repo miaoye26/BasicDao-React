@@ -85,20 +85,12 @@ export const main =
         A.publish(saltA, handA)
           .timeout(DEADLINE, () => closeTo(B, informTimeout));
         checkCommitment(commitA, saltA, handA);
-        commit();
 
-        if((handA == handB) && (handA == 0)) {
-          outcome = 0;
-        }
-        else if(handA == handB && handA == 1 ){
-          outcome = 1;
-        }
-        else{
-          outcome = DIFF;
-        }
-
-          interact.log(outcome);
-  
+        outcome = 
+        handA != handB ? DIFF :
+        handA == 0 ? 0 :
+        handA == 1  ? 1 :
+        DIFF;
 
         continue; 
 
