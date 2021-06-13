@@ -1,6 +1,6 @@
 'reach 0.1';
 
-const [ishand, ALICE_PROP, BOB_PROP, DIFF ] = makeEnum(3);
+const [isProp, ALICE_PROP, BOB_PROP, DIFF ] = makeEnum(3);
 
 const Player =
       { ...hasRandom,
