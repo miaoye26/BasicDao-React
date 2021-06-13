@@ -7,8 +7,12 @@ import './index.css';
 import * as backend from './build/index.main.mjs';
 import * as reach from '@reach-sh/stdlib/ETH';
 
-//const handToInt = {'ROCK': 0, 'PAPER': 1, 'SCISSORS': 2};
-//const intToOutcome = ['Bob wins!', 'Draw!', 'Alice wins!'];
+/*
+import * as reach from '@reach-sh/stdlib/ALGO.mjs';
+reach.setSignStrategy('AlgoSigner');
+reach.setProviderByName('TestNet');
+*/
+
 const VoteToInt = {'ALICE_PROP': 0, 'BOB_PROP': 1};
 const intToVote = ['Proposal of Alice reached consensus, funding was sent!', 'Proposal of Bob reached consensus, funding was sent!'];
 
@@ -51,19 +55,7 @@ class Player extends React.Component {
     this.setState({view: 'WaitingForResults', hand});
     return VoteToInt[hand];
   }
-/*
-  async findOutcome(handA, handB){
-    if(handA == handB && handA === 0 ){
-      return 0;
-    }
-    else if(handA === handB && handA === 1 ){
-      return 1;
-    }
-    else{
-      return 3;
-    }
-  }
-  */
+
   seeOutcome(i) { this.setState({view: 'Done', outcome: intToVote[i]}); }
   informTimeout() { this.setState({view: 'Timeout'}); }
   playHand(hand) { this.state.resolveHandP(hand); }

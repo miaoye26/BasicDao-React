@@ -101,7 +101,7 @@ exports.Deploy = class extends React.Component {
 
 exports.Deploying = class extends React.Component {
   render() {
-    const {parent, wager, aliceProposal, bobProposal, standardUnit} = this.props;
+    const { wager, aliceProposal, bobProposal, standardUnit} = this.props;
     return (
       
       <div>

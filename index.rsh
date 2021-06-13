@@ -1,23 +1,6 @@
 'reach 0.1';
 
-//const [ isHand, ROCK, PAPER, SCISSORS ] = makeEnum(3);
-//const [ isOutcome, B_WINS, DRAW, A_WINS ] = makeEnum(3);
 const [ishand, ALICE_PROP, BOB_PROP, DIFF ] = makeEnum(3);
-/*
-const winner = (handA, handB) =>
-      ((handA + (4 - handB)) % 3);
-
-assert(winner(ROCK, PAPER) == B_WINS);
-assert(winner(PAPER, ROCK) == A_WINS);
-assert(winner(ROCK, ROCK) == DRAW);
-
-forall(UInt, handA =>
-  forall(UInt, handB =>
-    assert(isOutcome(winner(handA, handB)))));
-
-forall(UInt, (hand) =>
-  assert(winner(hand, hand) == DRAW));
-*/
 
 const Player =
       { ...hasRandom,
@@ -92,42 +75,8 @@ export const main =
         DIFF;
 
         continue; 
-
-  /*
-        outcome = winner(handA, handB);
-        outcome = handA == handB ? ALICE_PROP : DIFF;
-  
-        A.only(() => {
-        outcome = interact.findOutcome(handA, handB);
-        });
-  */
- /*
-         outcome = 
-          handA != handB ? DIFF :
-          handA == 0 ? 0 :
-          handA == 1  ? 1 :
-          DIFF;
-
-          outcome =
-          ((handA == handB) && (handA == 0)) ? 0:
-          ((handA == handB) && (handA == 1)) ? 1:
-          DIFF;
-
-        if((handA == handB) && (handA == 0)){
-          outcome = ALICE_PROP;
-        }
-        else if(handA == handB && handA == 1 ){
-          outcome = BOB_PROP;
-        }
-        else{
-          outcome = DIFF;
-        }
-*/
-
-
          }
 
-      //assert(outcome == A_WINS);
       transfer(2 * wager).to(outcome == 0 ? A : B);
       commit();
 
