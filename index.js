@@ -10,7 +10,7 @@ import * as reach from '@reach-sh/stdlib/ETH';
 //const handToInt = {'ROCK': 0, 'PAPER': 1, 'SCISSORS': 2};
 //const intToOutcome = ['Bob wins!', 'Draw!', 'Alice wins!'];
 const VoteToInt = {'ALICE_PROP': 0, 'BOB_PROP': 1};
-const intToVote = ['ALICE_PROP', 'BOB_PROP'];
+const intToVote = ['Proposal of Alice reached consensus, funding was sent!', 'Proposal of Bob reached consensus, funding was sent!'];
 
 const {standardUnit} = reach;
 const defaults = {defaultFundAmt: '10', defaultWager: '0.01', standardUnit};

@@ -10,7 +10,7 @@ exports.GetVote = class extends React.Component {
     const {parent, playable, aliceProposal, bobProposal, hand} = this.props;
     return (
       <div>
-        {hand ? 'It was a difference! Vote again.' : ''}
+        {hand ? 'There is no concensus! Try convince your counterpart and vote again.' : ''}
         <br />
         {!playable ? 'Please wait...' : ''}
         <br />
@@ -77,8 +77,10 @@ exports.Done = class extends React.Component {
         <br />
         Staff Bob Proposal: <strong>{bobProposal}</strong>
         <br />
+        <br />
         Thank you for Voting on Basic DAO. The outcome of this DAO Voting was:
-        <br />{outcome}
+        <br />
+        <strong> {outcome} </strong>
       </div>
     );
   }

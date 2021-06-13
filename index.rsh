@@ -2,7 +2,7 @@
 
 //const [ isHand, ROCK, PAPER, SCISSORS ] = makeEnum(3);
 //const [ isOutcome, B_WINS, DRAW, A_WINS ] = makeEnum(3);
-const [ ALICE_PROP, BOB_PROP, DIFF, SAME ] = makeEnum(3);
+const [ishand, ALICE_PROP, BOB_PROP, DIFF ] = makeEnum(3);
 /*
 const winner = (handA, handB) =>
       ((handA + (4 - handB)) % 3);
@@ -87,8 +87,8 @@ export const main =
         checkCommitment(commitA, saltA, handA);
 
         outcome =
-        ((handA == handB) && (handA == 0)) ? 0:
-        ((handA == handB) && (handA == 1)) ? 1:
+        ((handA == ALICE_PROP) && (handB == ALICE_PROP)) ? 0:
+        ((handA == BOB_PROP) && (handB == BOB_PROP)) ? 1:
         DIFF;
 
         continue; 
