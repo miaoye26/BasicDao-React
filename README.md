@@ -1,2 +1,2 @@
-# BasicDao-React
- Basic DAO voting with random votes
+# MultiVoterDao-React
+ Basic multivoter DAO voting with random votes
