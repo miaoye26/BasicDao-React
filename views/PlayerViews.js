@@ -14,9 +14,9 @@ exports.GetVote = class extends React.Component {
         <br />
         {!playable ? 'Please wait...' : ''}
         <br />
-        CEO Alice Proposal: <strong>{aliceProposal}</strong>
+        Alice Proposal: <strong>{aliceProposal}</strong>
         <br />
-        Staff Bob Proposal: <strong>{bobProposal}</strong>
+        Bob Proposal: <strong>{bobProposal}</strong>
         <br />
         <button
           disabled={!playable}
@@ -30,33 +30,7 @@ exports.GetVote = class extends React.Component {
     );
   }
 }
-/*
-exports.GetHand = class extends React.Component {
-  render() {
-    const {parent, playable, hand} = this.props;
-    return (
-      <div>
-        {hand ? 'It was a draw! Pick again.' : ''}
-        <br />
-        {!playable ? 'Please wait...' : ''}
-        <br />
-        <button
-          disabled={!playable}
-          onClick={() => parent.playHand('ROCK')}
-        >Rock</button>
-        <button
-          disabled={!playable}
-          onClick={() => parent.playHand('PAPER')}
-        >Paper</button>
-        <button
-          disabled={!playable}
-          onClick={() => parent.playHand('SCISSORS')}
-        >Scissors</button>
-      </div>
-    );
-  }
-}
-*/
+
 exports.WaitingForResults = class extends React.Component {
   render() {
     return (
@@ -69,16 +43,20 @@ exports.WaitingForResults = class extends React.Component {
 
 exports.Done = class extends React.Component {
   render() {
-    const {outcome, aliceProposal, bobProposal} = this.props;
+    const {outcome, aliceProposal, bobProposal, numA, numB} = this.props;
     return (
       <div>
         <br />
-        CEO Alice Proposal: <strong>{aliceProposal}</strong>
+        Alice Proposal: <strong>{aliceProposal}</strong>
         <br />
-        Staff Bob Proposal: <strong>{bobProposal}</strong>
+        Number of Votes for Alice: <strong>{numA}</strong>
+        <br />
+        Bob Proposal: <strong>{bobProposal}</strong>
+        <br />
+        Number of Votes for Bob: <strong>{numB}</strong>
         <br />
         <br />
-        Thank you for Voting on Basic DAO. The outcome of this DAO Voting was:
+         The outcome of the Voting was:
         <br />
         <strong> {outcome} </strong>
       </div>

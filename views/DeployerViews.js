@@ -10,7 +10,7 @@ exports.Wrapper = class extends React.Component {
     const {content} = this.props;
     return (
       <div className="Deployer">
-        <h2>CEO/Deployer (Alice)</h2>
+        <h2>Deployer (Pollster)</h2>
         {content}
       </div>
     );
@@ -32,6 +32,26 @@ exports.SetWager = class extends React.Component {
         <button
           onClick={() => parent.setWager(wager)}
         >Set wager</button>
+      </div>
+    );
+  }
+}
+
+exports.SetDeadline = class extends React.Component {
+  render() {
+    const {parent, defaultDeadline, standardUnit} = this.props;
+    const deadline = (this.state || {}).deadline || defaultDeadline;
+    return (
+      <div>
+        <input
+          type='number'
+          placeholder={defaultDeadline}
+          onChange={(e) => this.setState({deadline: e.currentTarget.value})}
+        /> 
+        <br />
+        <button
+          onClick={() => parent.setDeadline(deadline)}
+        >Set Deadline</button>
       </div>
     );
   }
@@ -79,6 +99,53 @@ exports.SetBobProposal = class extends React.Component {
   }
 }
 
+
+exports.SetAliceAddr = class extends React.Component {
+  render() {
+    const {parent} = this.props;
+    const {ctcAliceAddr} = this.state || {};
+    return (
+      <div>
+        Please paste the Alice Address info:
+        <br />
+        <textarea spellcheck="false"
+          className='ContractInfo'
+          onChange={(e) => this.setState({ctcAliceAddr: e.currentTarget.value})}
+          placeholder='{}'
+        />
+        <br />
+        <button
+          disabled={!ctcAliceAddr}
+          onClick={() => parent.setAliceAddr(ctcAliceAddr)}
+        >Set Alice Deposit Address</button>
+      </div>
+    );
+  }
+}
+
+exports.SetBobAddr = class extends React.Component {
+  render() {
+    const {parent} = this.props;
+    const {ctcBobAddr} = this.state || {};
+    return (
+      <div>
+        Please paste the Bob Address info:
+        <br />
+        <textarea spellcheck="false"
+          className='ContractInfo'
+          onChange={(e) => this.setState({ctcBobAddr: e.currentTarget.value})}
+          placeholder='{}'
+        />
+        <br />
+        <button
+          disabled={!ctcBobAddr}
+          onClick={() => parent.setBobAddr(ctcBobAddr)}
+        >Set Bob Deposit Address</button>
+      </div>
+    );
+  }
+}
+
 exports.Deploy = class extends React.Component {
   render() {
     const {parent, wager, aliceProposal, bobProposal, standardUnit} = this.props;
@@ -107,9 +174,9 @@ exports.Deploying = class extends React.Component {
       <div>
          Wager (pay to vote): <strong>{wager}</strong> {standardUnit}
         <br />
-        CEO Alice Proposal: <strong>{aliceProposal}</strong>
+        Alice Proposal: <strong>{aliceProposal}</strong>
         <br />
-        Staff Bob Proposal: <strong>{bobProposal}</strong>
+        Bob Proposal: <strong>{bobProposal}</strong>
         <br />
         <br />
         Deploying... please wait.</div>

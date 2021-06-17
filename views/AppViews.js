@@ -8,7 +8,7 @@ exports.Wrapper = class extends React.Component {
     return (
       <div className="App">
         <header className="App-header" id="root">
-          <h1>Basic DAO-Voting DApp</h1>
+          <h1>DAO-Multiuser Voting DApp</h1>
           {content}
         </header>
       </div>
@@ -63,13 +63,13 @@ exports.DeployerOrAttacher = class extends React.Component {
         <p>
           <button
             onClick={() => parent.selectDeployer()}
-          >CEO/Deployer</button>
+          >Deployer</button>
           <br /> Set the wager, deploy the contract.
         </p>
         <p>
           <button
             onClick={() => parent.selectAttacher()}
-          >Staff/Attacher</button>
+          >Attacher</button>
           <br /> Attach to the Deployer's contract.
         </p>
       </div>
