@@ -16,9 +16,8 @@ reach.setProviderByName('TestNet');
 const VoteToInt = {'ALICE_PROP': 0, 'BOB_PROP': 1};
 const intToVote = [ 'Proposal of Alice reached consensus, funding was sent!',
                    'Proposal of Bob reached consensus, funding was sent!',
-                   ,'There has been a timeout!', ];
-     
-                   //'There has been a tie score, fund are being sent and evently divided!',];
+                   'There has been a timeout!',
+                   'There has been a tie score, fund are being sent and evently divided!'];
 
 const {standardUnit} = reach;
 const defaults = {defaultFundAmt: '10', defaultWager: '0.01', defaultDeadline: '10000', standardUnit};
@@ -61,10 +60,13 @@ class Player extends React.Component {
     return VoteToInt[vote];
   }
 
-  seeOutcome(i, forA, forB) { this.setState({view: 'Done', forA, forB, outcome: intToVote[i]}); }
+  seeOutcome(i, forA, forB) { 
+    const output = intToVote[i];
+    window.console.log(output);
+    this.setState({view: 'Done', forA, forB, outcome: output }); }
   informTimeout() { this.setState({view: 'Timeout'}); }
   playHand(vote) { this.state.resolveHandP(vote); }
-  log(i) {console.log(i);}
+  log(i) { window.alert(i); }
 }
 
 class Deployer extends Player {
@@ -93,8 +95,12 @@ class Deployer extends Player {
     this.voted = false;
 
     backend.Pollster(ctc, this);
+     //backend.Pollster(ctc, { token: '0xcc286d4cbbfc73c5642b7528309207aab59d366f' });
     const ctcInfoStr = JSON.stringify(await ctc.getInfo(), null, 2);
     this.setState({view: 'WaitingForAttacher', ctcInfoStr});
+  }
+  token(){
+    return '0xcc286d4cbbfc73c5642b7528309207aab59d366f'
   }
   render() { return renderView(this, DeployerViews); }
 }
@@ -103,6 +109,7 @@ class Attacher extends Player {
   constructor(props) {
     super(props);
     this.voted = false;
+    window.console.log('constructer-voted=' + this.voted);
     this.state = {view: 'Attach'};
   }
   attach(ctcInfoStr) {
@@ -110,29 +117,30 @@ class Attacher extends Player {
     this.setState({view: 'Attaching'});
     backend.Voter(ctc, this);
   }
-  async acceptWager(wagerAtomic, aliceProposal ,bobProposal ) { // Fun([UInt] Bytes, Bytes, Null)
+  async acceptWager(wagerAtomic, aliceProposal ,bobProposal ) { // Fun([UInt] Bytes, Bytes, Bool)
     const wager = reach.formatCurrency(wagerAtomic, 4);
     return await new Promise(resolveAcceptedP => {
+      window.console.log('acceptWager-voted=' + this.voted);
       this.setState({view: 'AcceptTerms', wager, aliceProposal, bobProposal, resolveAcceptedP});
     });
   }
   termsAccepted() {
     this.state.resolveAcceptedP();
     this.setState({view: 'WaitingForTurn'});
+    return true;
   }
   voterWas(voterAddr, forA, forB) {
-    //? if voterAddr = accVoter, only does it once
-
-  // if(reach.addressEq(voterAddr, ctc)) {
-     //console.log(`${Who} voted: ${vote ? 'Alice' : 'Bob'}`);
     this.forA = forA;
     this.forB = forB;
+    window.console.log('VoteWas1-voted=' + this.voted + ' from: ' + voterAddr);
     this.voted = true;
-  // }
-  
+    window.console.log('VoteWas2-voted=' + this.voted + ' from: ' + voterAddr);
+    window.console.log('forA=' + forA);
+    window.console.log('forB=' + forB);
 
  }
  shouldVote() { 
+  window.console.log('shouldVote-!voted=' + !this.voted);
    return !this.voted;
  }
   render() { return renderView(this, AttacherViews); }

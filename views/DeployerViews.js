@@ -39,7 +39,7 @@ exports.SetWager = class extends React.Component {
 
 exports.SetDeadline = class extends React.Component {
   render() {
-    const {parent, defaultDeadline, standardUnit} = this.props;
+    const {parent, defaultDeadline} = this.props;
     const deadline = (this.state || {}).deadline || defaultDeadline;
     return (
       <div>
@@ -108,7 +108,7 @@ exports.SetAliceAddr = class extends React.Component {
       <div>
         Please paste the Alice Address info:
         <br />
-        <textarea spellcheck="false"
+        <textarea spellCheck="false"
           className='ContractInfo'
           onChange={(e) => this.setState({ctcAliceAddr: e.currentTarget.value})}
           placeholder='{}'
@@ -131,7 +131,7 @@ exports.SetBobAddr = class extends React.Component {
       <div>
         Please paste the Bob Address info:
         <br />
-        <textarea spellcheck="false"
+        <textarea spellCheck="false"
           className='ContractInfo'
           onChange={(e) => this.setState({ctcBobAddr: e.currentTarget.value})}
           placeholder='{}'

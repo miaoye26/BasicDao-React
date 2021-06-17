@@ -41,19 +41,19 @@ exports.WaitingForResults = class extends React.Component {
   }
 }
 
-exports.Done = class extends React.Component {
+exports.f = class extends React.Component {
   render() {
-    const {outcome, aliceProposal, bobProposal, numA, numB} = this.props;
+    const {outcome, aliceProposal, bobProposal, forA, forB} = this.props;
     return (
       <div>
         <br />
         Alice Proposal: <strong>{aliceProposal}</strong>
         <br />
-        Number of Votes for Alice: <strong>{numA}</strong>
+        Number of Votes for Alice: <strong>{forA}</strong>
         <br />
         Bob Proposal: <strong>{bobProposal}</strong>
         <br />
-        Number of Votes for Bob: <strong>{numB}</strong>
+        Number of Votes for Bob: <strong>{forB}</strong>
         <br />
         <br />
          The outcome of the Voting was:
