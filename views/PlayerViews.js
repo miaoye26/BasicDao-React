@@ -41,7 +41,7 @@ exports.WaitingForResults = class extends React.Component {
   }
 }
 
-exports.f = class extends React.Component {
+exports.Done = class extends React.Component {
   render() {
     const {outcome, aliceProposal, bobProposal, forA, forB} = this.props;
     return (

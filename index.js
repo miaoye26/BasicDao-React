@@ -60,8 +60,12 @@ class Player extends React.Component {
     return VoteToInt[vote];
   }
 
-  seeOutcome(i, forA, forB) { 
+  seeOutcome(i, ACount, BCount) { 
+    window.console.log('ForA Total Count= ' + ACount.toString());
+    window.console.log('ForB Total Count= ' + BCount);
     const output = intToVote[i];
+    const forA = ACount.toString();
+    const forB = BCount.toString();
     window.console.log(output);
     this.setState({view: 'Done', forA, forB, outcome: output }); }
   informTimeout() { this.setState({view: 'Timeout'}); }
@@ -119,10 +123,15 @@ class Attacher extends Player {
   }
   async acceptWager(wagerAtomic, aliceProposal ,bobProposal ) { // Fun([UInt] Bytes, Bytes, Bool)
     const wager = reach.formatCurrency(wagerAtomic, 4);
-    return await new Promise(resolveAcceptedP => {
-      window.console.log('acceptWager-voted=' + this.voted);
-      this.setState({view: 'AcceptTerms', wager, aliceProposal, bobProposal, resolveAcceptedP});
-    });
+    //if(!this.voted)
+    {
+    //how to return return to Bool with the promise
+      return await new Promise(resolveAcceptedP => {
+        window.console.log('acceptWager-voted=' + this.voted);
+        this.setState({view: 'AcceptTerms', wager, aliceProposal, bobProposal, resolveAcceptedP});
+      });
+    }
+
   }
   termsAccepted() {
     this.state.resolveAcceptedP();
@@ -130,13 +139,15 @@ class Attacher extends Player {
     return true;
   }
   voterWas(voterAddr, forA, forB) {
-    this.forA = forA;
-    this.forB = forB;
-    window.console.log('VoteWas1-voted=' + this.voted + ' from: ' + voterAddr);
-    this.voted = true;
-    window.console.log('VoteWas2-voted=' + this.voted + ' from: ' + voterAddr);
-    window.console.log('forA=' + forA);
-    window.console.log('forB=' + forB);
+    if (reach.addressEq(voterAddr, this.props.acc.networkAccount)){
+      this.forA = forA;
+      this.forB = forB;
+      window.console.log('VoteWas1-voted=' + this.voted + ' from: ' + voterAddr);
+      this.voted = true;
+      window.console.log('VoteWas2-voted=' + this.voted + ' from: ' + voterAddr);
+      window.console.log('forA=' + forA);
+      window.console.log('forB=' + forB);
+    }
 
  }
  shouldVote() { 
