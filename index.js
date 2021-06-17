@@ -14,10 +14,13 @@ reach.setProviderByName('TestNet');
 */
 
 const VoteToInt = {'ALICE_PROP': 0, 'BOB_PROP': 1};
-const intToVote = ['Proposal of Alice reached consensus, funding was sent!', 'Proposal of Bob reached consensus, funding was sent!'];
+const intToVote = [ 'Proposal of Alice reached consensus, funding was sent!',
+                   'Proposal of Bob reached consensus, funding was sent!',
+                   'There has been a timeout!',
+                   'There has been a tie score, fund are being sent and evently divided!'];
 
 const {standardUnit} = reach;
-const defaults = {defaultFundAmt: '10', defaultWager: '0.01', standardUnit};
+const defaults = {defaultFundAmt: '10', defaultWager: '0.01', defaultDeadline: '10000', standardUnit};
 
 class App extends React.Component {
   constructor(props) {
@@ -48,18 +51,22 @@ class App extends React.Component {
 
 class Player extends React.Component {
   random() { return reach.hasRandom.random(); }
-  async getVote(aliceProposal, bobProposal) { // Fun([], UInt)
-    const hand = await new Promise(resolveHandP => {
+  async getVote(aliceProposal, bobProposal) { //  getVote: Fun([Bytes(1000), Bytes(1000)], UInt),
+    const vote = await new Promise(resolveHandP => {
       this.setState({view: 'GetVote', playable: true, aliceProposal, bobProposal, resolveHandP});
+      this.voted = true;
     });
-    this.setState({view: 'WaitingForResults', hand});
-    return VoteToInt[hand];
+    this.setState({view: 'WaitingForResults', vote});
+    return VoteToInt[vote];
   }
 
-  seeOutcome(i) { this.setState({view: 'Done', outcome: intToVote[i]}); }
+  seeOutcome(i, forA, forB) { 
+    const output = intToVote[i];
+    window.console.log(output);
+    this.setState({view: 'Done', forA, forB, outcome: output }); }
   informTimeout() { this.setState({view: 'Timeout'}); }
-  playHand(hand) { this.state.resolveHandP(hand); }
-  log(i) {console.log(i);}
+  playHand(vote) { this.state.resolveHandP(vote); }
+  log(i) { window.alert(i); }
 }
 
 class Deployer extends Player {
@@ -68,8 +75,13 @@ class Deployer extends Player {
     this.state = {view: 'SetWager'};
   }
   setWager(wager) { this.setState({view: 'SetAliceProposal', wager}); }
+  //setDeadline(deadline) { this.setState({view: 'SetAliceProposal', deadline}); }
+
   setAliceProposal(aliceProposal) { this.setState({view: 'SetBobProposal', aliceProposal}); }
-  setBobProposal(bobProposal) { this.setState({view: 'Deploy', bobProposal}); }
+  setBobProposal(bobProposal) { this.setState({view: 'SetAliceAddr', bobProposal}); }
+
+  setAliceAddr(aliceAddr) { this.setState({view: 'SetBobAddr', aliceAddr}); }
+  setBobAddr(bobAddr) { this.setState({view: 'Deploy', bobAddr}); }
 
   async deploy() {
     const ctc = this.props.acc.deploy(backend);
@@ -77,10 +89,18 @@ class Deployer extends Player {
     this.wager = reach.parseCurrency(this.state.wager); // UInt
     this.aliceProposal = this.state.aliceProposal;
     this.bobProposal = this.state.bobProposal;
+    this.deadline = this.state.deadline;
+    this.aliceAddr = this.state.aliceAddr;
+    this.bobAddr = this.state.bobAddr;
+    this.voted = false;
 
-    backend.Alice(ctc, this);
+    backend.Pollster(ctc, this);
+     //backend.Pollster(ctc, { token: '0xcc286d4cbbfc73c5642b7528309207aab59d366f' });
     const ctcInfoStr = JSON.stringify(await ctc.getInfo(), null, 2);
     this.setState({view: 'WaitingForAttacher', ctcInfoStr});
+  }
+  token(){
+    return '0xcc286d4cbbfc73c5642b7528309207aab59d366f'
   }
   render() { return renderView(this, DeployerViews); }
 }
@@ -88,23 +108,41 @@ class Deployer extends Player {
 class Attacher extends Player {
   constructor(props) {
     super(props);
+    this.voted = false;
+    window.console.log('constructer-voted=' + this.voted);
     this.state = {view: 'Attach'};
   }
   attach(ctcInfoStr) {
     const ctc = this.props.acc.attach(backend, JSON.parse(ctcInfoStr));
     this.setState({view: 'Attaching'});
-    backend.Bob(ctc, this);
+    backend.Voter(ctc, this);
   }
-  async acceptWager(wagerAtomic, aliceProposal ,bobProposal ) { // Fun([UInt] Bytes, Bytes, Null)
+  async acceptWager(wagerAtomic, aliceProposal ,bobProposal ) { // Fun([UInt] Bytes, Bytes, Bool)
     const wager = reach.formatCurrency(wagerAtomic, 4);
     return await new Promise(resolveAcceptedP => {
+      window.console.log('acceptWager-voted=' + this.voted);
       this.setState({view: 'AcceptTerms', wager, aliceProposal, bobProposal, resolveAcceptedP});
     });
   }
   termsAccepted() {
     this.state.resolveAcceptedP();
     this.setState({view: 'WaitingForTurn'});
+    return true;
   }
+  voterWas(voterAddr, forA, forB) {
+    this.forA = forA;
+    this.forB = forB;
+    window.console.log('VoteWas1-voted=' + this.voted + ' from: ' + voterAddr);
+    this.voted = true;
+    window.console.log('VoteWas2-voted=' + this.voted + ' from: ' + voterAddr);
+    window.console.log('forA=' + forA);
+    window.console.log('forB=' + forB);
+
+ }
+ shouldVote() { 
+  window.console.log('shouldVote-!voted=' + !this.voted);
+   return !this.voted;
+ }
   render() { return renderView(this, AttacherViews); }
 }
 

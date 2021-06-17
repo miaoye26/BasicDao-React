@@ -8,7 +8,7 @@ exports.Wrapper = class extends React.Component {
     const {content} = this.props;
     return (
       <div className="Attacher">
-        <h2>Staff/Attacher (Bob)</h2>
+        <h2>Attacher (Voter)</h2>
         {content}
       </div>
     );
@@ -23,7 +23,7 @@ exports.Attach = class extends React.Component {
       <div>
         Please paste the contract info to attach to:
         <br />
-        <textarea spellcheck="false"
+        <textarea spellCheck="false"
           className='ContractInfo'
           onChange={(e) => this.setState({ctcInfoStr: e.currentTarget.value})}
           placeholder='{}'
