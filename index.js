@@ -14,13 +14,13 @@ reach.setProviderByName('TestNet');
 */
 
 const VoteToInt = {'ALICE_PROP': 0, 'BOB_PROP': 1};
-const intToVote = [ 'Proposal of Alice reached consensus, funding was sent!',
-                   'Proposal of Bob reached consensus, funding was sent!',
+const intToVote = ['Proposal of Alice reached consensus, funding was sent to the winner!',
+                   'Proposal of Bob reached consensus, funding was sent to the winner!',
                    'There has been a timeout!',
-                   'There has been a tie score, fund are being sent and evently divided!'];
+                   'There has been a tie score, funding are being evently divided and sent to both party!'];
 
 const {standardUnit} = reach;
-const defaults = {defaultFundAmt: '10', defaultWager: '0.1', defaultDeadline: '10', standardUnit};
+const defaults = {defaultFundAmt: '10', defaultWager: '0.1', defaultDeadline: '15', standardUnit};
 
 class App extends React.Component {
   constructor(props) {
@@ -75,9 +75,8 @@ class Deployer extends Player {
     super(props);
     this.state = {view: 'SetWager'};
   }
-  setWager(wager) { this.setState({view: 'SetAliceProposal', wager}); }
-  //setDeadline(deadline) { this.setState({view: 'SetAliceProposal', deadline}); }
-
+  setWager(wager) { this.setState({view: 'SetDeadline', wager}); }
+  setDeadline(deadline) { this.setState({view: 'SetAliceProposal', deadline}); }
   setAliceProposal(aliceProposal) { this.setState({view: 'SetBobProposal', aliceProposal}); }
   setBobProposal(bobProposal) { this.setState({view: 'SetAliceAddr', bobProposal}); }
 
@@ -120,8 +119,6 @@ class Attacher extends Player {
   }
   async acceptWager(wagerAtomic, aliceProposal ,bobProposal ) { // Fun([UInt] Bytes, Bytes, Bool)
     const wager = reach.formatCurrency(wagerAtomic, 4);
-    //if(!this.voted)
-    //how to return return to Bool with the promise
     const accepted = await new Promise(resolveAcceptedP => {
         window.console.log('acceptWager-voted=' + this.voted);
         this.setState({view: 'AcceptTerms', wager, aliceProposal, bobProposal, resolveAcceptedP});
@@ -150,7 +147,6 @@ class Attacher extends Player {
   }
   
   voterWas(voterAddr, forA, forB) {
-    //if (reach.addressEq(voterAddr, this.props.acc.networkAccount)){
       this.forA = forA;
       this.forB = forB;
       window.console.log('VoteWas1-voted=' + this.voted + ' from: ' + voterAddr);
@@ -158,8 +154,6 @@ class Attacher extends Player {
       window.console.log('VoteWas2-voted=' + this.voted + ' from: ' + voterAddr);
       window.console.log('forA=' + forA);
       window.console.log('forB=' + forB);
-   // }
-
  }
  shouldVote() { 
   window.console.log('shouldVote-!voted=' + !this.voted);

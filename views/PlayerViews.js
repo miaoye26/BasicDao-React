@@ -35,7 +35,8 @@ exports.WaitingForResults = class extends React.Component {
   render() {
     return (
       <div>
-        Waiting for results...
+        Submiting your vote...  <br />
+        (Confirm your transcation on MetaMask)
       </div>
     );
   }

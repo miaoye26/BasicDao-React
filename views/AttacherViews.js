@@ -55,7 +55,7 @@ exports.AcceptTerms = class extends React.Component {
     const {disabled} = this.state || {};
     return (
       <div>
-        The terms of the votes are:
+        The terms of the DAO Vote are:
         <br /> Wager: {wager} {standardUnit}
         <br />
         Alice Proposal: <strong>{aliceProposal}</strong>
@@ -68,7 +68,7 @@ exports.AcceptTerms = class extends React.Component {
             this.setState({disabled: true});
             parent.termsAccepted();
           }}
-        >Accept terms and pay wager</button>
+        >Accept Terms and Pay Wager to Vote</button>
                 <br />
         <button
           disabled={disabled}
@@ -76,7 +76,7 @@ exports.AcceptTerms = class extends React.Component {
             this.setState({disabled: true});
             parent.WaitforResult();
           }}
-        >That is it for me! Wait for final results</button>
+        >I'm All Done! Wait for final results</button>
       </div>
     );
   }

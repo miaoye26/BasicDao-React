@@ -20,7 +20,6 @@ const Player_Pollster =
         deadline: UInt,
         aliceAddr: Address,
         bobAddr: Address, 
-        setDeadline: Fun([], UInt),
         DUDU: Token,
       };
 
@@ -51,18 +50,20 @@ export const main =
 */
       Pollster.only(() => {
         const wager = declassify(interact.wager);
+        const deadline = declassify(interact.deadline);
         const aliceProposal = declassify(interact.aliceProposal);
         const bobProposal = declassify(interact.bobProposal); 
         const aliceAddr = declassify(interact.aliceAddr);
         const bobAddr = declassify(interact.bobAddr);
+
         //const DUDU = declassify(interact.DUDU); 
-        // const deadline = declassify(interact.setDeadline());
+
       });
       
-      Pollster.publish(wager, aliceProposal, bobProposal, aliceAddr, bobAddr);
+      Pollster.publish(wager, aliceProposal, bobProposal, aliceAddr, bobAddr, deadline);
 
       //timeRemaining and keepGoing takes the deadline as input for makeDeadline
-      const [ timeRemaining, keepGoing ] = makeDeadline(DEADLINE);
+      const [ timeRemaining, keepGoing ] = makeDeadline(deadline);
 
         // paralleReduce function for running multiple voters at same time
     const [ forA, forB ] = parallelReduce([ 0, 0])
@@ -75,24 +76,21 @@ export const main =
           Voter,
           //PUBLISH_EXPR
           ( () => {
-            if(declassify(interact.isQuit()) == false){
-              if (declassify(interact.acceptWager(wager, aliceProposal ,bobProposal)) ) 
+            
+              if (declassify(interact.isQuit()) == false && declassify(interact.acceptWager(wager, aliceProposal ,bobProposal)) ) 
               {
                 return { 
                          //when: declassify(interact.shouldVote()), 
                          when: true,
                          msg: declassify(interact.getVote(aliceProposal, bobProposal)) 
                       }
-              } else {
+              } 
+              else {
                 return { when: false, msg: 4 }
               }
-            }
-            else {
-              return { when: false, msg: 4 }
-            }
+       
           }),
           //PAY_EXPR,
-          //? what is _ mean? 
           ( (_) => wager),
           //( (_) => [0, [wager, DUDU]]),
           //CONSENSUS_EXPR
@@ -101,7 +99,7 @@ export const main =
             const [ VforA, VforB ] = VoteInt == 0 ? [1,0] : [0,1];
             const [ Acount, Bcount] = [ forA + VforA, forB + VforB ];
             const voter = this;
-            // voters call voterWas function pass in self as voter 
+            //voters call voterWas function pass in self as voter 
             Voter.only(() => {
               //interact.voterWas(voter);
                interact.voterWas(voter, Acount, Bcount);
