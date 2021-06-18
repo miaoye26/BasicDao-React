@@ -20,7 +20,7 @@ const intToVote = [ 'Proposal of Alice reached consensus, funding was sent!',
                    'There has been a tie score, fund are being sent and evently divided!'];
 
 const {standardUnit} = reach;
-const defaults = {defaultFundAmt: '10', defaultWager: '0.01', defaultDeadline: '10000', standardUnit};
+const defaults = {defaultFundAmt: '10', defaultWager: '0.1', defaultDeadline: '10', standardUnit};
 
 class App extends React.Component {
   constructor(props) {
@@ -52,8 +52,8 @@ class App extends React.Component {
 class Player extends React.Component {
   random() { return reach.hasRandom.random(); }
   async getVote(aliceProposal, bobProposal) { //  getVote: Fun([Bytes(1000), Bytes(1000)], UInt),
-    const vote = await new Promise(resolveHandP => {
-      this.setState({view: 'GetVote', playable: true, aliceProposal, bobProposal, resolveHandP});
+    const vote = await new Promise(resolveVoteP => {
+      this.setState({view: 'GetVote', playable: true, aliceProposal, bobProposal, resolveVoteP});
       this.voted = true;
     });
     this.setState({view: 'WaitingForResults', vote});
@@ -66,7 +66,7 @@ class Player extends React.Component {
     const forB = BCount.toString();
     this.setState({view: 'Done', forA, forB, outcome: output }); }
   informTimeout() { this.setState({view: 'Timeout'}); }
-  playHand(vote) { this.state.resolveHandP(vote); }
+  VoteProp(vote) { this.state.resolveVoteP(vote); }
   log(i) { window.alert(i); }
 }
 
@@ -94,7 +94,7 @@ class Deployer extends Player {
     this.aliceAddr = this.state.aliceAddr;
     this.bobAddr = this.state.bobAddr;
     this.voted = false;
-    //this.DUDU = "0xcc286d4cbbfc73c5642b7528309207aab59d366f";
+    this.DUDU = "0xcc286d4cbbfc73c5642b7528309207aab59d366f";
 
     backend.Pollster(ctc, this);
      //backend.Pollster(ctc, { token: '0xcc286d4cbbfc73c5642b7528309207aab59d366f' });
@@ -121,17 +121,28 @@ class Attacher extends Player {
     const wager = reach.formatCurrency(wagerAtomic, 4);
     //if(!this.voted)
     //how to return return to Bool with the promise
-      return await new Promise(resolveAcceptedP => {
+    const accepted = await new Promise(resolveAcceptedP => {
         window.console.log('acceptWager-voted=' + this.voted);
         this.setState({view: 'AcceptTerms', wager, aliceProposal, bobProposal, resolveAcceptedP});
       });
+      if (accepted === 'ACCEPT')
+      {
+        window.console.log(`accepted = true :` + accepted.toString());
+      return true;
+      }
+      else
+      {
+        window.console.log(`accepted = false :` + accepted);
+      return false;
+      }  
   }
   termsAccepted() {
-    this.state.resolveAcceptedP();
+    this.state.resolveAcceptedP('ACCEPT');
     this.setState({view: 'WaitingForTurn'});
+
   }
   WaitforResult() {
-    this.state.resolveAcceptedP();
+    this.state.resolveAcceptedP('REJECT');
     this.setState({view: 'WaitingForResult'});
   }
   

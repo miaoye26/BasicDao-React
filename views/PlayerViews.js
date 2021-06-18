@@ -20,11 +20,11 @@ exports.GetVote = class extends React.Component {
         <br />
         <button
           disabled={!playable}
-          onClick={() => parent.playHand('ALICE_PROP')}
+          onClick={() => parent.VoteProp('ALICE_PROP')}
         >Alice's Proposal</button>
         <button
           disabled={!playable}
-          onClick={() => parent.playHand('BOB_PROP')}
+          onClick={() => parent.VoteProp('BOB_PROP')}
         >Bob's Proposal</button>
       </div>
     );
