@@ -30,7 +30,7 @@ const Player_Voter =
         voterWas: Fun([Address, UInt, UInt], Null),
         acceptWager: Fun([UInt, Bytes(1000), Bytes(1000)], Null) };
 
-const DEADLINE = 15;
+const DEADLINE = 10;
 
 export const main =
   Reach.App(
