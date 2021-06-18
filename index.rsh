@@ -10,7 +10,7 @@ const Player =
         shouldVote: Fun([], Bool),
         log: Fun([UInt], Null),
         findOutcome: Fun([UInt, UInt], UInt),
-        getVote: Fun([Bytes(1000), Bytes(1000)], UInt),
+        getVote: Fun([Bytes(1000), Bytes(1000), Bool], UInt),
         seeOutcome: Fun([UInt, UInt, UInt], Null)
        };
 
@@ -42,12 +42,12 @@ export const main =
          each([Pollster, Voter], () => {
             interact.informTimeout(); }); };
 
-    //function defined for each Pllostart and voter show their outcomes
-    const showOutcome = (which, forA, forB) => () => {
-      each([Pollster, Voter], () => 
-      interact.seeOutcome(which, forA, forB));
-    };
-*/
+      //function defined for each Pllostart and voter show their outcomes
+      const showOutcome = (which, forA, forB) => () => {
+        each([Pollster, Voter], () => 
+        interact.seeOutcome(which, forA, forB));
+      };
+    */
       Pollster.only(() => {
         const wager = declassify(interact.wager);
         const deadline = declassify(interact.deadline);
@@ -55,9 +55,7 @@ export const main =
         const bobProposal = declassify(interact.bobProposal); 
         const aliceAddr = declassify(interact.aliceAddr);
         const bobAddr = declassify(interact.bobAddr);
-
         //const DUDU = declassify(interact.DUDU); 
-
       });
       
       Pollster.publish(wager, aliceProposal, bobProposal, aliceAddr, bobAddr, deadline);
@@ -66,7 +64,7 @@ export const main =
       const [ timeRemaining, keepGoing ] = makeDeadline(deadline);
 
         // paralleReduce function for running multiple voters at same time
-    const [ forA, forB ] = parallelReduce([ 0, 0])
+    const [ forA, forB, timeOut ] = parallelReduce([ 0, 0, false])
         //.invariant(balance(DUDU) == ((forA + forB) * wager) && balance() == 0 )
         .invariant(balance() == ((forA + forB) * wager) )
         .while( keepGoing() )
@@ -77,12 +75,14 @@ export const main =
           //PUBLISH_EXPR
           ( () => {
             
-              if (declassify(interact.isQuit()) == false && declassify(interact.acceptWager(wager, aliceProposal ,bobProposal)) ) 
+              if (declassify(interact.isQuit()) == false && 
+                 declassify(interact.acceptWager(wager, aliceProposal ,bobProposal)) 
+                && timeOut == false) 
               {
                 return { 
                          //when: declassify(interact.shouldVote()), 
                          when: true,
-                         msg: declassify(interact.getVote(aliceProposal, bobProposal)) 
+                         msg: declassify(interact.getVote(aliceProposal, bobProposal, timeOut)) 
                       }
               } 
               else {
@@ -106,9 +106,8 @@ export const main =
                interact.log(Acount);
                interact.log(Bcount);
           });
-
             //return total count forA and forB
-            return [ Acount, Bcount];
+            return [ Acount, Bcount, false];
           }))
          .timeout(
            //DEADLINE
@@ -127,7 +126,7 @@ export const main =
                   interact.seeOutcome(result, forA, forB);
                 });
               //showOutcome(TIMEOUT, forA, forB)();
-              return [ forA, forB ];
+              return [ forA, forB , true ];
             });
 
              // set outcome base on who won

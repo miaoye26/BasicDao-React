@@ -51,7 +51,9 @@ class App extends React.Component {
 
 class Player extends React.Component {
   random() { return reach.hasRandom.random(); }
-  async getVote(aliceProposal, bobProposal) { //  getVote: Fun([Bytes(1000), Bytes(1000)], UInt),
+  async getVote(aliceProposal, bobProposal, isTimeOut) { //  getVote: Fun([Bytes(1000), Bytes(1000)], UInt),
+    if(isTimeOut === false)
+    {
     const vote = await new Promise(resolveVoteP => {
       this.setState({view: 'GetVote', playable: true, aliceProposal, bobProposal, resolveVoteP});
       this.voted = true;
@@ -59,6 +61,11 @@ class Player extends React.Component {
     this.setState({view: 'WaitingForResults', vote});
     return VoteToInt[vote];
   }
+  else
+  {
+    return VoteToInt[2];
+  }
+}
 
   seeOutcome(i, ACount, BCount) { 
     const output = intToVote[i];

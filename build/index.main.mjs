@@ -48,11 +48,11 @@ export async function Pollster(ctc, interact) {
   const v23 = stdlib.protect(ctc2, interact.deadline, 'for Pollster\'s interact field deadline');
   const v24 = stdlib.protect(ctc2, interact.wager, 'for Pollster\'s interact field wager');
   
-  const txn1 = await (ctc.sendrecv(1, 6, stdlib.checkedBigNumberify('./index.rsh:63:16:dot', stdlib.UInt_max, 0), [ctc2, ctc2, ctc1, ctc1, ctc0, ctc0, ctc2], [v27, v24, v20, v22, v19, v21, v23], [stdlib.checkedBigNumberify('./index.rsh:decimal', stdlib.UInt_max, 0), []], [ctc2, ctc1, ctc1, ctc0, ctc0, ctc2], true, true, false, (async (txn1) => {
+  const txn1 = await (ctc.sendrecv(1, 6, stdlib.checkedBigNumberify('./index.rsh:61:16:dot', stdlib.UInt_max, 0), [ctc2, ctc2, ctc1, ctc1, ctc0, ctc0, ctc2], [v27, v24, v20, v22, v19, v21, v23], [stdlib.checkedBigNumberify('./index.rsh:decimal', stdlib.UInt_max, 0), []], [ctc2, ctc1, ctc1, ctc0, ctc0, ctc2], true, true, false, (async (txn1) => {
     const sim_r = { txns: [], mapRefs: [], mapsPrev: [], mapsNext: [] };
     
-    sim_r.prevSt = stdlib.digest(ctc8, [stdlib.checkedBigNumberify('./index.rsh:63:16:dot', stdlib.UInt_max, 0), v27]);
-    sim_r.prevSt_noPrevTime = stdlib.digest(ctc4, [stdlib.checkedBigNumberify('./index.rsh:63:16:dot', stdlib.UInt_max, 0)]);
+    sim_r.prevSt = stdlib.digest(ctc8, [stdlib.checkedBigNumberify('./index.rsh:61:16:dot', stdlib.UInt_max, 0), v27]);
+    sim_r.prevSt_noPrevTime = stdlib.digest(ctc4, [stdlib.checkedBigNumberify('./index.rsh:61:16:dot', stdlib.UInt_max, 0)]);
     const [v32, v33, v34, v35, v36, v37] = txn1.data;
     const v39 = txn1.time;
     const v31 = txn1.from;
@@ -63,38 +63,39 @@ export async function Pollster(ctc, interact) {
       tok: undefined
       });
     const v42 = stdlib.add(v27, v37);
-    const v45 = stdlib.checkedBigNumberify('./index.rsh:69:45:decimal', stdlib.UInt_max, 0);
-    const v46 = stdlib.checkedBigNumberify('./index.rsh:69:48:decimal', stdlib.UInt_max, 0);
-    const v152 = v39;
-    const v153 = v27;
-    const v154 = stdlib.checkedBigNumberify('./index.rsh:39:23:application', stdlib.UInt_max, 0);
+    const v45 = stdlib.checkedBigNumberify('./index.rsh:67:54:decimal', stdlib.UInt_max, 0);
+    const v46 = stdlib.checkedBigNumberify('./index.rsh:67:57:decimal', stdlib.UInt_max, 0);
+    const v47 = false;
+    const v157 = v39;
+    const v158 = v27;
+    const v159 = stdlib.checkedBigNumberify('./index.rsh:39:23:application', stdlib.UInt_max, 0);
     
     if ((() => {
-      const v56 = stdlib.gt(v42, v153);
+      const v57 = stdlib.gt(v42, v158);
       
-      return v56;})()) {
-      const v111 = stdlib.sub(v42, v153);
-      sim_r.nextSt = stdlib.digest(ctc5, [stdlib.checkedBigNumberify('./index.rsh:69:42:after expr stmt semicolon', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v111, v152, v154]);
-      sim_r.nextSt_noTime = stdlib.digest(ctc6, [stdlib.checkedBigNumberify('./index.rsh:69:42:after expr stmt semicolon', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v111, v154]);
-      sim_r.view = [ctc4, [stdlib.checkedBigNumberify('./index.rsh:69:42:after expr stmt semicolon', stdlib.UInt_max, 0)]];
+      return v57;})()) {
+      const v116 = stdlib.sub(v42, v158);
+      sim_r.nextSt = stdlib.digest(ctc5, [stdlib.checkedBigNumberify('./index.rsh:67:51:after expr stmt semicolon', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v116, v157, v159]);
+      sim_r.nextSt_noTime = stdlib.digest(ctc6, [stdlib.checkedBigNumberify('./index.rsh:67:51:after expr stmt semicolon', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v116, v159]);
+      sim_r.view = [ctc4, [stdlib.checkedBigNumberify('./index.rsh:67:51:after expr stmt semicolon', stdlib.UInt_max, 0)]];
       sim_r.isHalt = false;
       }
     else {
-      const v128 = stdlib.eq(v45, v46);
-      const v129 = stdlib.gt(v45, v46);
-      const v130 = v129 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
-      const v131 = v128 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v130;
-      if (v128) {
-        const v133 = stdlib.mul(v32, v45);
+      const v133 = stdlib.eq(v45, v46);
+      const v134 = stdlib.gt(v45, v46);
+      const v135 = v134 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
+      const v136 = v133 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v135;
+      if (v133) {
+        const v138 = stdlib.mul(v32, v45);
         sim_r.txns.push({
-          amt: v133,
+          amt: v138,
           kind: 'from',
           to: v35,
           tok: undefined
           });
-        const v138 = stdlib.mul(v32, v46);
+        const v143 = stdlib.mul(v32, v46);
         sim_r.txns.push({
-          amt: v138,
+          amt: v143,
           kind: 'from',
           to: v36,
           tok: undefined
@@ -109,12 +110,12 @@ export async function Pollster(ctc, interact) {
         sim_r.isHalt = true;
         }
       else {
-        const v143 = stdlib.eq(v131, stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0));
-        const v144 = v143 ? v35 : v36;
+        const v148 = stdlib.eq(v136, stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0));
+        const v149 = v148 ? v35 : v36;
         sim_r.txns.push({
-          amt: v154,
+          amt: v159,
           kind: 'from',
-          to: v144,
+          to: v149,
           tok: undefined
           });
         sim_r.txns.push({
@@ -133,77 +134,80 @@ export async function Pollster(ctc, interact) {
   const v31 = txn1.from;
   ;
   const v42 = stdlib.add(v27, v37);
-  let v45 = stdlib.checkedBigNumberify('./index.rsh:69:45:decimal', stdlib.UInt_max, 0);
-  let v46 = stdlib.checkedBigNumberify('./index.rsh:69:48:decimal', stdlib.UInt_max, 0);
-  let v152 = v39;
-  let v153 = v27;
-  let v154 = stdlib.checkedBigNumberify('./index.rsh:39:23:application', stdlib.UInt_max, 0);
+  let v45 = stdlib.checkedBigNumberify('./index.rsh:67:54:decimal', stdlib.UInt_max, 0);
+  let v46 = stdlib.checkedBigNumberify('./index.rsh:67:57:decimal', stdlib.UInt_max, 0);
+  let v47 = false;
+  let v157 = v39;
+  let v158 = v27;
+  let v159 = stdlib.checkedBigNumberify('./index.rsh:39:23:application', stdlib.UInt_max, 0);
   
   while ((() => {
-    const v56 = stdlib.gt(v42, v153);
+    const v57 = stdlib.gt(v42, v158);
     
-    return v56;})()) {
-    const v111 = stdlib.sub(v42, v153);
-    const txn2 = await (ctc.recv(4, 1, [ctc2], false, v111));
+    return v57;})()) {
+    const v116 = stdlib.sub(v42, v158);
+    const txn2 = await (ctc.recv(4, 1, [ctc2], false, v116));
     if (txn2.didTimeout) {
-      const txn3 = await (ctc.sendrecv(5, 0, stdlib.checkedBigNumberify('./index.rsh:119:23:dot', stdlib.UInt_max, 7), [ctc2, ctc0, ctc0, ctc2, ctc2, ctc2, ctc2, ctc2, ctc2], [v32, v35, v36, v42, v45, v46, v111, v152, v154], [stdlib.checkedBigNumberify('./index.rsh:decimal', stdlib.UInt_max, 0), []], [], true, false, false, (async (txn3) => {
+      const txn3 = await (ctc.sendrecv(5, 0, stdlib.checkedBigNumberify('./index.rsh:118:23:dot', stdlib.UInt_max, 7), [ctc2, ctc0, ctc0, ctc2, ctc2, ctc2, ctc2, ctc2, ctc2], [v32, v35, v36, v42, v45, v46, v116, v157, v159], [stdlib.checkedBigNumberify('./index.rsh:decimal', stdlib.UInt_max, 0), []], [], true, false, false, (async (txn3) => {
         const sim_r = { txns: [], mapRefs: [], mapsPrev: [], mapsNext: [] };
         
-        sim_r.prevSt = stdlib.digest(ctc5, [stdlib.checkedBigNumberify('./index.rsh:119:23:dot', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v111, v152, v154]);
-        sim_r.prevSt_noPrevTime = stdlib.digest(ctc6, [stdlib.checkedBigNumberify('./index.rsh:119:23:dot', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v111, v154]);
+        sim_r.prevSt = stdlib.digest(ctc5, [stdlib.checkedBigNumberify('./index.rsh:118:23:dot', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v116, v157, v159]);
+        sim_r.prevSt_noPrevTime = stdlib.digest(ctc6, [stdlib.checkedBigNumberify('./index.rsh:118:23:dot', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v116, v159]);
         const [] = txn3.data;
-        const v116 = txn3.time;
-        const v114 = txn3.from;
+        const v121 = txn3.time;
+        const v119 = txn3.from;
         
         sim_r.txns.push({
           amt: stdlib.checkedBigNumberify('./index.rsh:decimal', stdlib.UInt_max, 0),
           kind: 'to',
           tok: undefined
           });
-        const v117 = stdlib.eq(v45, v46);
-        const v118 = stdlib.gt(v45, v46);
-        const v119 = v118 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
-        const v120 = v117 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v119;
+        const v122 = stdlib.eq(v45, v46);
+        const v123 = stdlib.gt(v45, v46);
+        const v124 = v123 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
+        const v125 = v122 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v124;
         
         const cv45 = v45;
         const cv46 = v46;
-        const cv152 = v116;
-        const cv153 = v152;
-        const cv154 = v154;
+        const cv47 = true;
+        const cv157 = v121;
+        const cv158 = v157;
+        const cv159 = v159;
         
         (() => {
           const v45 = cv45;
           const v46 = cv46;
-          const v152 = cv152;
-          const v153 = cv153;
-          const v154 = cv154;
+          const v47 = cv47;
+          const v157 = cv157;
+          const v158 = cv158;
+          const v159 = cv159;
           
           if ((() => {
-            const v56 = stdlib.gt(v42, v153);
+            const v57 = stdlib.gt(v42, v158);
             
-            return v56;})()) {
-            const v111 = stdlib.sub(v42, v153);
-            sim_r.nextSt = stdlib.digest(ctc5, [stdlib.checkedBigNumberify('./index.rsh:69:42:after expr stmt semicolon', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v111, v152, v154]);
-            sim_r.nextSt_noTime = stdlib.digest(ctc6, [stdlib.checkedBigNumberify('./index.rsh:69:42:after expr stmt semicolon', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v111, v154]);
-            sim_r.view = [ctc4, [stdlib.checkedBigNumberify('./index.rsh:69:42:after expr stmt semicolon', stdlib.UInt_max, 0)]];
+            return v57;})()) {
+            const v116 = stdlib.sub(v42, v158);
+            sim_r.nextSt = stdlib.digest(ctc5, [stdlib.checkedBigNumberify('./index.rsh:67:51:after expr stmt semicolon', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v116, v157, v159]);
+            sim_r.nextSt_noTime = stdlib.digest(ctc6, [stdlib.checkedBigNumberify('./index.rsh:67:51:after expr stmt semicolon', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v116, v159]);
+            sim_r.view = [ctc4, [stdlib.checkedBigNumberify('./index.rsh:67:51:after expr stmt semicolon', stdlib.UInt_max, 0)]];
             sim_r.isHalt = false;
             }
           else {
-            const v128 = stdlib.eq(v45, v46);
-            const v129 = stdlib.gt(v45, v46);
-            const v130 = v129 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
-            const v131 = v128 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v130;
-            if (v128) {
-              const v133 = stdlib.mul(v32, v45);
+            const v133 = stdlib.eq(v45, v46);
+            const v134 = stdlib.gt(v45, v46);
+            const v135 = v134 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
+            const v136 = v133 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v135;
+            if (v133) {
+              const v138 = stdlib.mul(v32, v45);
               sim_r.txns.push({
-                amt: v133,
+                amt: v138,
                 kind: 'from',
                 to: v35,
                 tok: undefined
                 });
-              const v138 = stdlib.mul(v32, v46);
+              const v143 = stdlib.mul(v32, v46);
               sim_r.txns.push({
-                amt: v138,
+                amt: v143,
                 kind: 'from',
                 to: v36,
                 tok: undefined
@@ -218,12 +222,12 @@ export async function Pollster(ctc, interact) {
               sim_r.isHalt = true;
               }
             else {
-              const v143 = stdlib.eq(v131, stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0));
-              const v144 = v143 ? v35 : v36;
+              const v148 = stdlib.eq(v136, stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0));
+              const v149 = v148 ? v35 : v36;
               sim_r.txns.push({
-                amt: v154,
+                amt: v159,
                 kind: 'from',
-                to: v144,
+                to: v149,
                 tok: undefined
                 });
               sim_r.txns.push({
@@ -238,75 +242,79 @@ export async function Pollster(ctc, interact) {
         return sim_r;
         })));
       const [] = txn3.data;
-      const v116 = txn3.time;
-      const v114 = txn3.from;
+      const v121 = txn3.time;
+      const v119 = txn3.from;
       ;
-      const v117 = stdlib.eq(v45, v46);
-      const v118 = stdlib.gt(v45, v46);
-      const v119 = v118 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
-      const v120 = v117 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v119;
-      stdlib.protect(ctc3, await interact.seeOutcome(v120, v45, v46), {
-        at: './index.rsh:127:38:application',
-        fs: ['at ./index.rsh:126:28:application call to [unknown function] (defined at: ./index.rsh:126:32:function exp)', 'at ./index.rsh:69:42:application call to [unknown function] (defined at: ./index.rsh:69:42:function exp)'],
+      const v122 = stdlib.eq(v45, v46);
+      const v123 = stdlib.gt(v45, v46);
+      const v124 = v123 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
+      const v125 = v122 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v124;
+      stdlib.protect(ctc3, await interact.seeOutcome(v125, v45, v46), {
+        at: './index.rsh:126:38:application',
+        fs: ['at ./index.rsh:125:28:application call to [unknown function] (defined at: ./index.rsh:125:32:function exp)', 'at ./index.rsh:67:51:application call to [unknown function] (defined at: ./index.rsh:67:51:function exp)'],
         msg: 'seeOutcome',
         who: 'Pollster'
         });
       
       const cv45 = v45;
       const cv46 = v46;
-      const cv152 = v116;
-      const cv153 = v152;
-      const cv154 = v154;
+      const cv47 = true;
+      const cv157 = v121;
+      const cv158 = v157;
+      const cv159 = v159;
       
       v45 = cv45;
       v46 = cv46;
-      v152 = cv152;
-      v153 = cv153;
-      v154 = cv154;
+      v47 = cv47;
+      v157 = cv157;
+      v158 = cv158;
+      v159 = cv159;
       
       continue;
       }
     else {
-      const [v90] = txn2.data;
-      const v95 = txn2.time;
-      const v89 = txn2.from;
-      const v94 = stdlib.add(v154, v32);
+      const [v95] = txn2.data;
+      const v100 = txn2.time;
+      const v94 = txn2.from;
+      const v99 = stdlib.add(v159, v32);
       ;
-      const v97 = stdlib.eq(v90, stdlib.checkedBigNumberify('./index.rsh:99:49:decimal', stdlib.UInt_max, 0));
-      const v98 = [stdlib.checkedBigNumberify('./index.rsh:99:54:decimal', stdlib.UInt_max, 1), stdlib.checkedBigNumberify('./index.rsh:99:56:decimal', stdlib.UInt_max, 0)];
-      const v99 = [stdlib.checkedBigNumberify('./index.rsh:99:62:decimal', stdlib.UInt_max, 0), stdlib.checkedBigNumberify('./index.rsh:99:64:decimal', stdlib.UInt_max, 1)];
-      const v100 = v97 ? v98 : v99;
-      const v101 = v100[stdlib.checkedBigNumberify('./index.rsh:99:19:array', stdlib.UInt_max, 0)];
-      const v102 = v100[stdlib.checkedBigNumberify('./index.rsh:99:19:array', stdlib.UInt_max, 1)];
-      const v103 = stdlib.add(v45, v101);
-      const v104 = stdlib.add(v46, v102);
-      const cv45 = v103;
-      const cv46 = v104;
-      const cv152 = v95;
-      const cv153 = v152;
-      const cv154 = v94;
+      const v102 = stdlib.eq(v95, stdlib.checkedBigNumberify('./index.rsh:99:49:decimal', stdlib.UInt_max, 0));
+      const v103 = [stdlib.checkedBigNumberify('./index.rsh:99:54:decimal', stdlib.UInt_max, 1), stdlib.checkedBigNumberify('./index.rsh:99:56:decimal', stdlib.UInt_max, 0)];
+      const v104 = [stdlib.checkedBigNumberify('./index.rsh:99:62:decimal', stdlib.UInt_max, 0), stdlib.checkedBigNumberify('./index.rsh:99:64:decimal', stdlib.UInt_max, 1)];
+      const v105 = v102 ? v103 : v104;
+      const v106 = v105[stdlib.checkedBigNumberify('./index.rsh:99:19:array', stdlib.UInt_max, 0)];
+      const v107 = v105[stdlib.checkedBigNumberify('./index.rsh:99:19:array', stdlib.UInt_max, 1)];
+      const v108 = stdlib.add(v45, v106);
+      const v109 = stdlib.add(v46, v107);
+      const cv45 = v108;
+      const cv46 = v109;
+      const cv47 = false;
+      const cv157 = v100;
+      const cv158 = v157;
+      const cv159 = v99;
       
       v45 = cv45;
       v46 = cv46;
-      v152 = cv152;
-      v153 = cv153;
-      v154 = cv154;
+      v47 = cv47;
+      v157 = cv157;
+      v158 = cv158;
+      v159 = cv159;
       
       continue;}
     }
-  const v128 = stdlib.eq(v45, v46);
-  const v129 = stdlib.gt(v45, v46);
-  const v130 = v129 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
-  const v131 = v128 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v130;
-  if (v128) {
-    const v133 = stdlib.mul(v32, v45);
+  const v133 = stdlib.eq(v45, v46);
+  const v134 = stdlib.gt(v45, v46);
+  const v135 = v134 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
+  const v136 = v133 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v135;
+  if (v133) {
+    const v138 = stdlib.mul(v32, v45);
     ;
-    const v138 = stdlib.mul(v32, v46);
+    const v143 = stdlib.mul(v32, v46);
     ;
     return;}
   else {
-    const v143 = stdlib.eq(v131, stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0));
-    const v144 = v143 ? v35 : v36;
+    const v148 = stdlib.eq(v136, stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0));
+    const v149 = v148 ? v35 : v36;
     ;
     return;}
   
@@ -331,123 +339,128 @@ export async function Voter(ctc, interact) {
   const v31 = txn1.from;
   ;
   const v42 = stdlib.add(v27, v37);
-  let v45 = stdlib.checkedBigNumberify('./index.rsh:69:45:decimal', stdlib.UInt_max, 0);
-  let v46 = stdlib.checkedBigNumberify('./index.rsh:69:48:decimal', stdlib.UInt_max, 0);
-  let v152 = v39;
-  let v153 = v27;
-  let v154 = stdlib.checkedBigNumberify('./index.rsh:39:23:application', stdlib.UInt_max, 0);
+  let v45 = stdlib.checkedBigNumberify('./index.rsh:67:54:decimal', stdlib.UInt_max, 0);
+  let v46 = stdlib.checkedBigNumberify('./index.rsh:67:57:decimal', stdlib.UInt_max, 0);
+  let v47 = false;
+  let v157 = v39;
+  let v158 = v27;
+  let v159 = stdlib.checkedBigNumberify('./index.rsh:39:23:application', stdlib.UInt_max, 0);
   
   while ((() => {
-    const v56 = stdlib.gt(v42, v153);
+    const v57 = stdlib.gt(v42, v158);
     
-    return v56;})()) {
-    const v111 = stdlib.sub(v42, v153);
-    let v75;
-    const v76 = stdlib.protect(ctc3, await interact.isQuit(), {
-      at: './index.rsh:80:45:application',
-      fs: ['at ./index.rsh:69:42:application call to [unknown function] (defined at: ./index.rsh:78:16:function exp)', 'at ./index.rsh:69:42:application call to [unknown function] (defined at: ./index.rsh:69:42:function exp)'],
+    return v57;})()) {
+    const v116 = stdlib.sub(v42, v158);
+    let v78;
+    const v79 = stdlib.protect(ctc3, await interact.isQuit(), {
+      at: './index.rsh:78:45:application',
+      fs: ['at ./index.rsh:67:51:application call to [unknown function] (defined at: ./index.rsh:76:16:function exp)', 'at ./index.rsh:67:51:application call to [unknown function] (defined at: ./index.rsh:67:51:function exp)'],
       msg: 'isQuit',
       who: 'Voter'
       });
-    let v79;
-    if (v76) {
-      v79 = false;
+    let v82;
+    if (v79) {
+      v82 = false;
       }
     else {
-      const v78 = stdlib.protect(ctc3, await interact.acceptWager(v32, v33, v34), {
-        at: './index.rsh:80:92:application',
-        fs: ['at ./index.rsh:69:42:application call to [unknown function] (defined at: ./index.rsh:78:16:function exp)', 'at ./index.rsh:69:42:application call to [unknown function] (defined at: ./index.rsh:69:42:function exp)'],
+      const v81 = stdlib.protect(ctc3, await interact.acceptWager(v32, v33, v34), {
+        at: './index.rsh:79:49:application',
+        fs: ['at ./index.rsh:67:51:application call to [unknown function] (defined at: ./index.rsh:76:16:function exp)', 'at ./index.rsh:67:51:application call to [unknown function] (defined at: ./index.rsh:67:51:function exp)'],
         msg: 'acceptWager',
         who: 'Voter'
         });
-      v79 = v78;
+      v82 = v81;
       }
-    if (v79) {
-      const v80 = stdlib.protect(ctc0, await interact.getVote(v33, v34), {
+    const v83 = v47 ? false : true;
+    const v84 = v82 ? v83 : false;
+    if (v84) {
+      const v85 = stdlib.protect(ctc0, await interact.getVote(v33, v34, v47), {
         at: './index.rsh:85:58:application',
-        fs: ['at ./index.rsh:69:42:application call to [unknown function] (defined at: ./index.rsh:78:16:function exp)', 'at ./index.rsh:69:42:application call to [unknown function] (defined at: ./index.rsh:69:42:function exp)'],
+        fs: ['at ./index.rsh:67:51:application call to [unknown function] (defined at: ./index.rsh:76:16:function exp)', 'at ./index.rsh:67:51:application call to [unknown function] (defined at: ./index.rsh:67:51:function exp)'],
         msg: 'getVote',
         who: 'Voter'
         });
-      const v83 = {
-        msg: v80,
+      const v88 = {
+        msg: v85,
         when: true
         };
-      v75 = v83;
+      v78 = v88;
       }
     else {
-      const v84 = {
+      const v89 = {
         msg: stdlib.checkedBigNumberify('./index.rsh:89:44:decimal', stdlib.UInt_max, 4),
         when: false
         };
-      v75 = v84;
+      v78 = v89;
       }
-    const v85 = v75.when;
-    const v86 = v75.msg;
+    const v90 = v78.when;
+    const v91 = v78.msg;
     
-    const txn2 = await (ctc.sendrecv(4, 1, stdlib.checkedBigNumberify('./index.rsh:69:42:dot', stdlib.UInt_max, 7), [ctc0, ctc2, ctc2, ctc0, ctc0, ctc0, ctc0, ctc0, ctc0, ctc0], [v32, v35, v36, v42, v45, v46, v111, v152, v154, v86], [v32, []], [ctc0], v85, false, v111, (async (txn2) => {
+    const txn2 = await (ctc.sendrecv(4, 1, stdlib.checkedBigNumberify('./index.rsh:67:51:dot', stdlib.UInt_max, 7), [ctc0, ctc2, ctc2, ctc0, ctc0, ctc0, ctc0, ctc0, ctc0, ctc0], [v32, v35, v36, v42, v45, v46, v116, v157, v159, v91], [v32, []], [ctc0], v90, false, v116, (async (txn2) => {
       const sim_r = { txns: [], mapRefs: [], mapsPrev: [], mapsNext: [] };
       
-      sim_r.prevSt = stdlib.digest(ctc6, [stdlib.checkedBigNumberify('./index.rsh:69:42:dot', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v111, v152, v154]);
-      sim_r.prevSt_noPrevTime = stdlib.digest(ctc7, [stdlib.checkedBigNumberify('./index.rsh:69:42:dot', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v111, v154]);
-      const [v90] = txn2.data;
-      const v95 = txn2.time;
-      const v89 = txn2.from;
+      sim_r.prevSt = stdlib.digest(ctc6, [stdlib.checkedBigNumberify('./index.rsh:67:51:dot', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v116, v157, v159]);
+      sim_r.prevSt_noPrevTime = stdlib.digest(ctc7, [stdlib.checkedBigNumberify('./index.rsh:67:51:dot', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v116, v159]);
+      const [v95] = txn2.data;
+      const v100 = txn2.time;
+      const v94 = txn2.from;
       
-      const v94 = stdlib.add(v154, v32);
+      const v99 = stdlib.add(v159, v32);
       sim_r.txns.push({
         amt: v32,
         kind: 'to',
         tok: undefined
         });
-      const v97 = stdlib.eq(v90, stdlib.checkedBigNumberify('./index.rsh:99:49:decimal', stdlib.UInt_max, 0));
-      const v98 = [stdlib.checkedBigNumberify('./index.rsh:99:54:decimal', stdlib.UInt_max, 1), stdlib.checkedBigNumberify('./index.rsh:99:56:decimal', stdlib.UInt_max, 0)];
-      const v99 = [stdlib.checkedBigNumberify('./index.rsh:99:62:decimal', stdlib.UInt_max, 0), stdlib.checkedBigNumberify('./index.rsh:99:64:decimal', stdlib.UInt_max, 1)];
-      const v100 = v97 ? v98 : v99;
-      const v101 = v100[stdlib.checkedBigNumberify('./index.rsh:99:19:array', stdlib.UInt_max, 0)];
-      const v102 = v100[stdlib.checkedBigNumberify('./index.rsh:99:19:array', stdlib.UInt_max, 1)];
-      const v103 = stdlib.add(v45, v101);
-      const v104 = stdlib.add(v46, v102);
+      const v102 = stdlib.eq(v95, stdlib.checkedBigNumberify('./index.rsh:99:49:decimal', stdlib.UInt_max, 0));
+      const v103 = [stdlib.checkedBigNumberify('./index.rsh:99:54:decimal', stdlib.UInt_max, 1), stdlib.checkedBigNumberify('./index.rsh:99:56:decimal', stdlib.UInt_max, 0)];
+      const v104 = [stdlib.checkedBigNumberify('./index.rsh:99:62:decimal', stdlib.UInt_max, 0), stdlib.checkedBigNumberify('./index.rsh:99:64:decimal', stdlib.UInt_max, 1)];
+      const v105 = v102 ? v103 : v104;
+      const v106 = v105[stdlib.checkedBigNumberify('./index.rsh:99:19:array', stdlib.UInt_max, 0)];
+      const v107 = v105[stdlib.checkedBigNumberify('./index.rsh:99:19:array', stdlib.UInt_max, 1)];
+      const v108 = stdlib.add(v45, v106);
+      const v109 = stdlib.add(v46, v107);
       
-      const cv45 = v103;
-      const cv46 = v104;
-      const cv152 = v95;
-      const cv153 = v152;
-      const cv154 = v94;
+      const cv45 = v108;
+      const cv46 = v109;
+      const cv47 = false;
+      const cv157 = v100;
+      const cv158 = v157;
+      const cv159 = v99;
       
       (() => {
         const v45 = cv45;
         const v46 = cv46;
-        const v152 = cv152;
-        const v153 = cv153;
-        const v154 = cv154;
+        const v47 = cv47;
+        const v157 = cv157;
+        const v158 = cv158;
+        const v159 = cv159;
         
         if ((() => {
-          const v56 = stdlib.gt(v42, v153);
+          const v57 = stdlib.gt(v42, v158);
           
-          return v56;})()) {
-          const v111 = stdlib.sub(v42, v153);
-          sim_r.nextSt = stdlib.digest(ctc6, [stdlib.checkedBigNumberify('./index.rsh:69:42:after expr stmt semicolon', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v111, v152, v154]);
-          sim_r.nextSt_noTime = stdlib.digest(ctc7, [stdlib.checkedBigNumberify('./index.rsh:69:42:after expr stmt semicolon', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v111, v154]);
-          sim_r.view = [ctc5, [stdlib.checkedBigNumberify('./index.rsh:69:42:after expr stmt semicolon', stdlib.UInt_max, 0)]];
+          return v57;})()) {
+          const v116 = stdlib.sub(v42, v158);
+          sim_r.nextSt = stdlib.digest(ctc6, [stdlib.checkedBigNumberify('./index.rsh:67:51:after expr stmt semicolon', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v116, v157, v159]);
+          sim_r.nextSt_noTime = stdlib.digest(ctc7, [stdlib.checkedBigNumberify('./index.rsh:67:51:after expr stmt semicolon', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v116, v159]);
+          sim_r.view = [ctc5, [stdlib.checkedBigNumberify('./index.rsh:67:51:after expr stmt semicolon', stdlib.UInt_max, 0)]];
           sim_r.isHalt = false;
           }
         else {
-          const v128 = stdlib.eq(v45, v46);
-          const v129 = stdlib.gt(v45, v46);
-          const v130 = v129 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
-          const v131 = v128 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v130;
-          if (v128) {
-            const v133 = stdlib.mul(v32, v45);
+          const v133 = stdlib.eq(v45, v46);
+          const v134 = stdlib.gt(v45, v46);
+          const v135 = v134 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
+          const v136 = v133 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v135;
+          if (v133) {
+            const v138 = stdlib.mul(v32, v45);
             sim_r.txns.push({
-              amt: v133,
+              amt: v138,
               kind: 'from',
               to: v35,
               tok: undefined
               });
-            const v138 = stdlib.mul(v32, v46);
+            const v143 = stdlib.mul(v32, v46);
             sim_r.txns.push({
-              amt: v138,
+              amt: v143,
               kind: 'from',
               to: v36,
               tok: undefined
@@ -462,12 +475,12 @@ export async function Voter(ctc, interact) {
             sim_r.isHalt = true;
             }
           else {
-            const v143 = stdlib.eq(v131, stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0));
-            const v144 = v143 ? v35 : v36;
+            const v148 = stdlib.eq(v136, stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0));
+            const v149 = v148 ? v35 : v36;
             sim_r.txns.push({
-              amt: v154,
+              amt: v159,
               kind: 'from',
-              to: v144,
+              to: v149,
               tok: undefined
               });
             sim_r.txns.push({
@@ -482,64 +495,66 @@ export async function Voter(ctc, interact) {
       return sim_r;
       })));
     if (txn2.didTimeout) {
-      const txn3 = await (ctc.sendrecv(5, 0, stdlib.checkedBigNumberify('./index.rsh:119:23:dot', stdlib.UInt_max, 7), [ctc0, ctc2, ctc2, ctc0, ctc0, ctc0, ctc0, ctc0, ctc0], [v32, v35, v36, v42, v45, v46, v111, v152, v154], [stdlib.checkedBigNumberify('./index.rsh:decimal', stdlib.UInt_max, 0), []], [], true, false, false, (async (txn3) => {
+      const txn3 = await (ctc.sendrecv(5, 0, stdlib.checkedBigNumberify('./index.rsh:118:23:dot', stdlib.UInt_max, 7), [ctc0, ctc2, ctc2, ctc0, ctc0, ctc0, ctc0, ctc0, ctc0], [v32, v35, v36, v42, v45, v46, v116, v157, v159], [stdlib.checkedBigNumberify('./index.rsh:decimal', stdlib.UInt_max, 0), []], [], true, false, false, (async (txn3) => {
         const sim_r = { txns: [], mapRefs: [], mapsPrev: [], mapsNext: [] };
         
-        sim_r.prevSt = stdlib.digest(ctc6, [stdlib.checkedBigNumberify('./index.rsh:119:23:dot', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v111, v152, v154]);
-        sim_r.prevSt_noPrevTime = stdlib.digest(ctc7, [stdlib.checkedBigNumberify('./index.rsh:119:23:dot', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v111, v154]);
+        sim_r.prevSt = stdlib.digest(ctc6, [stdlib.checkedBigNumberify('./index.rsh:118:23:dot', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v116, v157, v159]);
+        sim_r.prevSt_noPrevTime = stdlib.digest(ctc7, [stdlib.checkedBigNumberify('./index.rsh:118:23:dot', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v116, v159]);
         const [] = txn3.data;
-        const v116 = txn3.time;
-        const v114 = txn3.from;
+        const v121 = txn3.time;
+        const v119 = txn3.from;
         
         sim_r.txns.push({
           amt: stdlib.checkedBigNumberify('./index.rsh:decimal', stdlib.UInt_max, 0),
           kind: 'to',
           tok: undefined
           });
-        const v117 = stdlib.eq(v45, v46);
-        const v118 = stdlib.gt(v45, v46);
-        const v119 = v118 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
-        const v120 = v117 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v119;
+        const v122 = stdlib.eq(v45, v46);
+        const v123 = stdlib.gt(v45, v46);
+        const v124 = v123 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
+        const v125 = v122 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v124;
         
         const cv45 = v45;
         const cv46 = v46;
-        const cv152 = v116;
-        const cv153 = v152;
-        const cv154 = v154;
+        const cv47 = true;
+        const cv157 = v121;
+        const cv158 = v157;
+        const cv159 = v159;
         
         (() => {
           const v45 = cv45;
           const v46 = cv46;
-          const v152 = cv152;
-          const v153 = cv153;
-          const v154 = cv154;
+          const v47 = cv47;
+          const v157 = cv157;
+          const v158 = cv158;
+          const v159 = cv159;
           
           if ((() => {
-            const v56 = stdlib.gt(v42, v153);
+            const v57 = stdlib.gt(v42, v158);
             
-            return v56;})()) {
-            const v111 = stdlib.sub(v42, v153);
-            sim_r.nextSt = stdlib.digest(ctc6, [stdlib.checkedBigNumberify('./index.rsh:69:42:after expr stmt semicolon', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v111, v152, v154]);
-            sim_r.nextSt_noTime = stdlib.digest(ctc7, [stdlib.checkedBigNumberify('./index.rsh:69:42:after expr stmt semicolon', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v111, v154]);
-            sim_r.view = [ctc5, [stdlib.checkedBigNumberify('./index.rsh:69:42:after expr stmt semicolon', stdlib.UInt_max, 0)]];
+            return v57;})()) {
+            const v116 = stdlib.sub(v42, v158);
+            sim_r.nextSt = stdlib.digest(ctc6, [stdlib.checkedBigNumberify('./index.rsh:67:51:after expr stmt semicolon', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v116, v157, v159]);
+            sim_r.nextSt_noTime = stdlib.digest(ctc7, [stdlib.checkedBigNumberify('./index.rsh:67:51:after expr stmt semicolon', stdlib.UInt_max, 5), v32, v35, v36, v42, v45, v46, v116, v159]);
+            sim_r.view = [ctc5, [stdlib.checkedBigNumberify('./index.rsh:67:51:after expr stmt semicolon', stdlib.UInt_max, 0)]];
             sim_r.isHalt = false;
             }
           else {
-            const v128 = stdlib.eq(v45, v46);
-            const v129 = stdlib.gt(v45, v46);
-            const v130 = v129 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
-            const v131 = v128 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v130;
-            if (v128) {
-              const v133 = stdlib.mul(v32, v45);
+            const v133 = stdlib.eq(v45, v46);
+            const v134 = stdlib.gt(v45, v46);
+            const v135 = v134 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
+            const v136 = v133 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v135;
+            if (v133) {
+              const v138 = stdlib.mul(v32, v45);
               sim_r.txns.push({
-                amt: v133,
+                amt: v138,
                 kind: 'from',
                 to: v35,
                 tok: undefined
                 });
-              const v138 = stdlib.mul(v32, v46);
+              const v143 = stdlib.mul(v32, v46);
               sim_r.txns.push({
-                amt: v138,
+                amt: v143,
                 kind: 'from',
                 to: v36,
                 tok: undefined
@@ -554,12 +569,12 @@ export async function Voter(ctc, interact) {
               sim_r.isHalt = true;
               }
             else {
-              const v143 = stdlib.eq(v131, stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0));
-              const v144 = v143 ? v35 : v36;
+              const v148 = stdlib.eq(v136, stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0));
+              const v149 = v148 ? v35 : v36;
               sim_r.txns.push({
-                amt: v154,
+                amt: v159,
                 kind: 'from',
-                to: v144,
+                to: v149,
                 tok: undefined
                 });
               sim_r.txns.push({
@@ -574,94 +589,98 @@ export async function Voter(ctc, interact) {
         return sim_r;
         })));
       const [] = txn3.data;
-      const v116 = txn3.time;
-      const v114 = txn3.from;
+      const v121 = txn3.time;
+      const v119 = txn3.from;
       ;
-      const v117 = stdlib.eq(v45, v46);
-      const v118 = stdlib.gt(v45, v46);
-      const v119 = v118 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
-      const v120 = v117 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v119;
-      stdlib.protect(ctc4, await interact.seeOutcome(v120, v45, v46), {
-        at: './index.rsh:123:36:application',
-        fs: ['at ./index.rsh:122:25:application call to [unknown function] (defined at: ./index.rsh:122:29:function exp)', 'at ./index.rsh:69:42:application call to [unknown function] (defined at: ./index.rsh:69:42:function exp)'],
+      const v122 = stdlib.eq(v45, v46);
+      const v123 = stdlib.gt(v45, v46);
+      const v124 = v123 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
+      const v125 = v122 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v124;
+      stdlib.protect(ctc4, await interact.seeOutcome(v125, v45, v46), {
+        at: './index.rsh:122:36:application',
+        fs: ['at ./index.rsh:121:25:application call to [unknown function] (defined at: ./index.rsh:121:29:function exp)', 'at ./index.rsh:67:51:application call to [unknown function] (defined at: ./index.rsh:67:51:function exp)'],
         msg: 'seeOutcome',
         who: 'Voter'
         });
       
       const cv45 = v45;
       const cv46 = v46;
-      const cv152 = v116;
-      const cv153 = v152;
-      const cv154 = v154;
+      const cv47 = true;
+      const cv157 = v121;
+      const cv158 = v157;
+      const cv159 = v159;
       
       v45 = cv45;
       v46 = cv46;
-      v152 = cv152;
-      v153 = cv153;
-      v154 = cv154;
+      v47 = cv47;
+      v157 = cv157;
+      v158 = cv158;
+      v159 = cv159;
       
       continue;
       }
     else {
-      const [v90] = txn2.data;
-      const v95 = txn2.time;
-      const v89 = txn2.from;
-      const v94 = stdlib.add(v154, v32);
+      const [v95] = txn2.data;
+      const v100 = txn2.time;
+      const v94 = txn2.from;
+      const v99 = stdlib.add(v159, v32);
       ;
-      const v97 = stdlib.eq(v90, stdlib.checkedBigNumberify('./index.rsh:99:49:decimal', stdlib.UInt_max, 0));
-      const v98 = [stdlib.checkedBigNumberify('./index.rsh:99:54:decimal', stdlib.UInt_max, 1), stdlib.checkedBigNumberify('./index.rsh:99:56:decimal', stdlib.UInt_max, 0)];
-      const v99 = [stdlib.checkedBigNumberify('./index.rsh:99:62:decimal', stdlib.UInt_max, 0), stdlib.checkedBigNumberify('./index.rsh:99:64:decimal', stdlib.UInt_max, 1)];
-      const v100 = v97 ? v98 : v99;
-      const v101 = v100[stdlib.checkedBigNumberify('./index.rsh:99:19:array', stdlib.UInt_max, 0)];
-      const v102 = v100[stdlib.checkedBigNumberify('./index.rsh:99:19:array', stdlib.UInt_max, 1)];
-      const v103 = stdlib.add(v45, v101);
-      const v104 = stdlib.add(v46, v102);
-      stdlib.protect(ctc4, await interact.voterWas(v89, v103, v104), {
+      const v102 = stdlib.eq(v95, stdlib.checkedBigNumberify('./index.rsh:99:49:decimal', stdlib.UInt_max, 0));
+      const v103 = [stdlib.checkedBigNumberify('./index.rsh:99:54:decimal', stdlib.UInt_max, 1), stdlib.checkedBigNumberify('./index.rsh:99:56:decimal', stdlib.UInt_max, 0)];
+      const v104 = [stdlib.checkedBigNumberify('./index.rsh:99:62:decimal', stdlib.UInt_max, 0), stdlib.checkedBigNumberify('./index.rsh:99:64:decimal', stdlib.UInt_max, 1)];
+      const v105 = v102 ? v103 : v104;
+      const v106 = v105[stdlib.checkedBigNumberify('./index.rsh:99:19:array', stdlib.UInt_max, 0)];
+      const v107 = v105[stdlib.checkedBigNumberify('./index.rsh:99:19:array', stdlib.UInt_max, 1)];
+      const v108 = stdlib.add(v45, v106);
+      const v109 = stdlib.add(v46, v107);
+      stdlib.protect(ctc4, await interact.voterWas(v94, v108, v109), {
         at: './index.rsh:105:33:application',
-        fs: ['at ./index.rsh:103:23:application call to [unknown function] (defined at: ./index.rsh:103:27:function exp)', 'at ./index.rsh:69:42:application call to [unknown function] (defined at: ./index.rsh:69:42:function exp)'],
+        fs: ['at ./index.rsh:103:23:application call to [unknown function] (defined at: ./index.rsh:103:27:function exp)', 'at ./index.rsh:67:51:application call to [unknown function] (defined at: ./index.rsh:67:51:function exp)'],
         msg: 'voterWas',
         who: 'Voter'
         });
-      stdlib.protect(ctc4, await interact.log(v103), {
+      stdlib.protect(ctc4, await interact.log(v108), {
         at: './index.rsh:106:28:application',
-        fs: ['at ./index.rsh:103:23:application call to [unknown function] (defined at: ./index.rsh:103:27:function exp)', 'at ./index.rsh:69:42:application call to [unknown function] (defined at: ./index.rsh:69:42:function exp)'],
+        fs: ['at ./index.rsh:103:23:application call to [unknown function] (defined at: ./index.rsh:103:27:function exp)', 'at ./index.rsh:67:51:application call to [unknown function] (defined at: ./index.rsh:67:51:function exp)'],
         msg: 'log',
         who: 'Voter'
         });
-      stdlib.protect(ctc4, await interact.log(v104), {
+      stdlib.protect(ctc4, await interact.log(v109), {
         at: './index.rsh:107:28:application',
-        fs: ['at ./index.rsh:103:23:application call to [unknown function] (defined at: ./index.rsh:103:27:function exp)', 'at ./index.rsh:69:42:application call to [unknown function] (defined at: ./index.rsh:69:42:function exp)'],
+        fs: ['at ./index.rsh:103:23:application call to [unknown function] (defined at: ./index.rsh:103:27:function exp)', 'at ./index.rsh:67:51:application call to [unknown function] (defined at: ./index.rsh:67:51:function exp)'],
         msg: 'log',
         who: 'Voter'
         });
       
-      const cv45 = v103;
-      const cv46 = v104;
-      const cv152 = v95;
-      const cv153 = v152;
-      const cv154 = v94;
+      const cv45 = v108;
+      const cv46 = v109;
+      const cv47 = false;
+      const cv157 = v100;
+      const cv158 = v157;
+      const cv159 = v99;
       
       v45 = cv45;
       v46 = cv46;
-      v152 = cv152;
-      v153 = cv153;
-      v154 = cv154;
+      v47 = cv47;
+      v157 = cv157;
+      v158 = cv158;
+      v159 = cv159;
       
       continue;}
     }
-  const v128 = stdlib.eq(v45, v46);
-  const v129 = stdlib.gt(v45, v46);
-  const v130 = v129 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
-  const v131 = v128 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v130;
-  if (v128) {
-    const v133 = stdlib.mul(v32, v45);
+  const v133 = stdlib.eq(v45, v46);
+  const v134 = stdlib.gt(v45, v46);
+  const v135 = v134 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0) : stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 1);
+  const v136 = v133 ? stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 3) : v135;
+  if (v133) {
+    const v138 = stdlib.mul(v32, v45);
     ;
-    const v138 = stdlib.mul(v32, v46);
+    const v143 = stdlib.mul(v32, v46);
     ;
     return;}
   else {
-    const v143 = stdlib.eq(v131, stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0));
-    const v144 = v143 ? v35 : v36;
+    const v148 = stdlib.eq(v136, stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, 0));
+    const v149 = v148 ? v35 : v36;
     ;
     return;}
   
@@ -987,7 +1006,7 @@ gtxn 1 Sender
 assert
 // Run body
 // "CheckPay"
-// "./index.rsh:63:16:dot"
+// "./index.rsh:61:16:dot"
 // "[]"
 gtxn 3 TypeEnum
 int pay
@@ -1296,7 +1315,7 @@ load 255
 +
 store 246
 // "CheckPay"
-// "./index.rsh:69:42:dot"
+// "./index.rsh:67:51:dot"
 // "[]"
 gtxn 3 TypeEnum
 int pay
@@ -1775,8 +1794,8 @@ gtxn 1 Sender
 assert
 // Run body
 // "CheckPay"
-// "./index.rsh:119:23:dot"
-// "[at ./index.rsh:69:42:application call to [unknown function] (defined at: ./index.rsh:69:42:function exp)]"
+// "./index.rsh:118:23:dot"
+// "[at ./index.rsh:67:51:application call to [unknown function] (defined at: ./index.rsh:67:51:function exp)]"
 gtxn 3 TypeEnum
 int pay
 ==
@@ -2218,17 +2237,17 @@ const _ETH = {
               },
               {
                 "internalType": "uint256",
-                "name": "v111",
+                "name": "v116",
                 "type": "uint256"
               },
               {
                 "internalType": "uint256",
-                "name": "v152",
+                "name": "v157",
                 "type": "uint256"
               },
               {
                 "internalType": "uint256",
-                "name": "v154",
+                "name": "v159",
                 "type": "uint256"
               }
             ],
@@ -2240,7 +2259,7 @@ const _ETH = {
             "components": [
               {
                 "internalType": "uint256",
-                "name": "v90",
+                "name": "v95",
                 "type": "uint256"
               }
             ],
@@ -2297,17 +2316,17 @@ const _ETH = {
               },
               {
                 "internalType": "uint256",
-                "name": "v111",
+                "name": "v116",
                 "type": "uint256"
               },
               {
                 "internalType": "uint256",
-                "name": "v152",
+                "name": "v157",
                 "type": "uint256"
               },
               {
                 "internalType": "uint256",
-                "name": "v154",
+                "name": "v159",
                 "type": "uint256"
               }
             ],
@@ -2432,17 +2451,17 @@ const _ETH = {
               },
               {
                 "internalType": "uint256",
-                "name": "v111",
+                "name": "v116",
                 "type": "uint256"
               },
               {
                 "internalType": "uint256",
-                "name": "v152",
+                "name": "v157",
                 "type": "uint256"
               },
               {
                 "internalType": "uint256",
-                "name": "v154",
+                "name": "v159",
                 "type": "uint256"
               }
             ],
@@ -2454,7 +2473,7 @@ const _ETH = {
             "components": [
               {
                 "internalType": "uint256",
-                "name": "v90",
+                "name": "v95",
                 "type": "uint256"
               }
             ],
@@ -2511,17 +2530,17 @@ const _ETH = {
               },
               {
                 "internalType": "uint256",
-                "name": "v111",
+                "name": "v116",
                 "type": "uint256"
               },
               {
                 "internalType": "uint256",
-                "name": "v152",
+                "name": "v157",
                 "type": "uint256"
               },
               {
                 "internalType": "uint256",
-                "name": "v154",
+                "name": "v159",
                 "type": "uint256"
               }
             ],
@@ -2550,7 +2569,7 @@ const _ETH = {
     "type": "receive"
   }
 ]`,
-  Bytecode: `0x608060408190527f49ff028a829527a47ec6839c7147b484eccf5a2a94853eddac09cef44d9d4e9e90600090a16040805160208082018352438252825180820184526000808252925181528351808301849052905181850152835180820385018152606090910190935282519201919091209055610baa806100826000396000f3fe6080604052600436106100385760003560e01c80630e8cf81f146100445780630eca3944146100595780631709bfe61461006c5761003f565b3661003f57005b600080fd5b6100576100523660046108dd565b61007f565b005b6100576100673660046108c1565b6101b3565b61005761007a3660046108c1565b6102fb565b60408051600060208201528235918101919091526060016040516020818303038152906040528051906020012060001c600054146100bc57600080fd5b6000805534156100cb57600080fd5b7f4aa569d9a4ded68c8b39431bcbd3bb34f89f6a13f67468d4d0f77f1e8e0fb616816040516100fa91906109f4565b60405180910390a161010a6107a3565b80516020830135905261012561fa60830161fa4084016108a0565b81516001600160a01b0390911660209091015261014a61fa80830161fa6084016108a0565b81516001600160a01b0390911660409091015261016d61fa808301358335610b10565b8151606090810191909152602080830180516000908190528151909201829052805143604090910152805185359301929092529051608001526101af816104bc565b5050565b6040516101c7906005908390602001610a73565b6040516020818303038152906040528051906020012060001c600054146101ed57600080fd5b6000805561020360c082013560e0830135610b10565b43101561020f57600080fd5b341561021a57600080fd5b7f7b1c355d81488551f705476666c317f790ca4aae966386a8cfac027ffdfbe8d58160405161024991906109c1565b60405180910390a16102596107a3565b80518235905261026f60408301602084016108a0565b81516001600160a01b0390911660209091015261029260608301604084016108a0565b81516001600160a01b0390911660409182015281516060808501359181019190915260208084018051608080880135909152815160a0880135930192909252805143940193909352825160e086013592019190915290516101008401359101526101af816104bc565b60405161030f906005908390602001610a73565b6040516020818303038152906040528051906020012060001c6000541461033557600080fd5b6000805561034161080a565b61035360c083013560e0840135610b10565b431061035e57600080fd5b3482351461036b57600080fd5b8051600190819052815160006020918201819052818401805191909152510152610120820135156103a05780602001516103a3565b80515b81604001819052507f0896ce676240463b5368d125b72186db14e7a676ccc8695d5751c0c49668fb47826040516103da91906109a3565b60405180910390a16103ea6107a3565b80518335905261040060408401602085016108a0565b81516001600160a01b0390911660209091015261042360608401604085016108a0565b81516001600160a01b03909116604091820152815160608086013591015282015151610453906080850135610b10565b60208083015191909152604083015101516104729060a0850135610b10565b60208083018051909101919091528051436040909101525160e08401356060909101526104a58335610100850135610b10565b6020820151608001526104b7816104bc565b505050565b60408051602081019091526000815281602001516060015182600001516060015111156105d0578160200151606001518260000151606001516104ff9190610b47565b81526040805161012081018252600080825260208083018281528385018381526060808601858152608080880187815260a0890188815260c08a0189815260e08b018a81526101008c019a8b528e51518c528e518a01516001600160a01b039081169099528e518d01519098169096528c51909401519092528a8601805151909252815186015190925288519092528151870151909252510151909152915190916105af91600591849101610a88565b60408051601f198184030181529190528051602090910120600055506101af565b604080516101008101825260008183018181526060808401838152608080860185815260a0870186815260c0880187815260e08901888152878a526020808b018a90528d51519098528c518801516001600160a01b039081169096528c518b01519095169092528a86018051519091528051860151909152518101519091528551928301909552918152825193840151939091015190921480835290916104b791839190156107225781516020810151606082015191516001600160a01b03909116916108fc916106a19190610b28565b6040518115909202916000818181858888f193505050501580156106c9573d6000803e3d6000fd5b5081516040810151608082015191516001600160a01b03909116916108fc916106f29190610b28565b6040518115909202916000818181858888f1935050505015801561071a573d6000803e3d6000fd5b506000805533ff5b805160009061074c578251608081015160609091015111610744576001610747565b60005b61074f565b60035b1461075f57815160400151610766565b8151602001515b825160a001516040516001600160a01b03929092169181156108fc0291906000818181858888f1935050505015801561071a573d6000803e3d6000fd5b6040805160c0810182526000918101828152606082018390526080820183905260a082019290925290819081526020016108056040518060a0016040528060008152602001600081526020016000815260200160008152602001600081525090565b905290565b6040805160a0810190915260006060820181815260808301919091528190815260200161084a604051806040016040528060008152602001600081525090565b8152602001610805604051806040016040528060008152602001600081525090565b80356001600160a01b038116811461088357600080fd5b919050565b6000610140828403121561089a578081fd5b50919050565b6000602082840312156108b1578081fd5b6108ba8261086c565b9392505050565b600061014082840312156108d3578081fd5b6108ba8383610888565b600061faa0828403121561089a578081fd5b806000805b6103e881101561092557823560ff811680821461090f578384fd5b86525060209485019492909201916001016108f4565b5050505050565b8035825261093c6020820161086c565b6001600160a01b038181166020850152806109596040850161086c565b1660408501525050606081013560608301526080810135608083015260a081013560a083015260c081013560c083015260e081013560e08301526101008082013581840152505050565b61014081016109b2828461092c565b61012092830135919092015290565b61014081016109d0828461092c565b610120808401358015158082146109e657600080fd5b808386015250505092915050565b813581526020808301359082015261faa08101610a1760408084019085016108ef565b617d40610a288184018286016108ef565b5061fa40610a3781850161086c565b6001600160a01b038181169285019290925261fa609180610a5987850161086c565b168386015250505061fa8080840135818401525092915050565b82815261014081016108ba602083018461092c565b6000610140820190508382528251602083015260018060a01b0360208401511660408301526040830151610ac760608401826001600160a01b03169052565b5060608301516080830152608083015160a083015260a083015160c083015260c083015160e083015260e083015161010081818501528085015161012085015250509392505050565b60008219821115610b2357610b23610b5e565b500190565b6000816000190483118215151615610b4257610b42610b5e565b500290565b600082821015610b5957610b59610b5e565b500390565b634e487b7160e01b600052601160045260246000fdfea2646970667358221220ea4b11851098f0909dba5f242f24a69b0bf13447fbe21bf966687853bd51da7c64736f6c63430008020033`,
+  Bytecode: `0x608060408190527f49ff028a829527a47ec6839c7147b484eccf5a2a94853eddac09cef44d9d4e9e90600090a16040805160208082018352438252825180820184526000808252925181528351808301849052905181850152835180820385018152606090910190935282519201919091209055610bc9806100826000396000f3fe6080604052600436106100385760003560e01c80630e8cf81f146100445780630eca3944146100595780631709bfe61461006c5761003f565b3661003f57005b600080fd5b6100576100523660046108fc565b61007f565b005b6100576100673660046108e0565b6101bb565b61005761007a3660046108e0565b61030c565b60408051600060208201528235918101919091526060016040516020818303038152906040528051906020012060001c600054146100bc57600080fd5b6000805534156100cb57600080fd5b7f4aa569d9a4ded68c8b39431bcbd3bb34f89f6a13f67468d4d0f77f1e8e0fb616816040516100fa9190610a13565b60405180910390a161010a6107b9565b80516020830135905261012561fa60830161fa4084016108bf565b81516001600160a01b0390911660209091015261014a61fa80830161fa6084016108bf565b81516001600160a01b0390911660409091015261016d61fa808301358335610b2f565b8151606090810191909152602080830180516000908190528151909201829052805160400182905280514393019290925281518435608090910152905160a001526101b7816104d7565b5050565b6040516101cf906005908390602001610a92565b6040516020818303038152906040528051906020012060001c600054146101f557600080fd5b6000805561020b60c082013560e0830135610b2f565b43101561021757600080fd5b341561022257600080fd5b7f7b1c355d81488551f705476666c317f790ca4aae966386a8cfac027ffdfbe8d58160405161025191906109e0565b60405180910390a16102616107b9565b80518235905261027760408301602084016108bf565b81516001600160a01b0390911660209091015261029a60608301604084016108bf565b81516001600160a01b0390911660409182015281516060808501359181019190915260208084018051608080880135909152815160a080890135919094015281516001950194909452805143930192909252815160e0860135930192909252516101008401359101526101b7816104d7565b604051610320906005908390602001610a92565b6040516020818303038152906040528051906020012060001c6000541461034657600080fd5b60008055610352610829565b61036460c083013560e0840135610b2f565b431061036f57600080fd5b3482351461037c57600080fd5b8051600190819052815160006020918201819052818401805191909152510152610120820135156103b15780602001516103b4565b80515b81604001819052507f0896ce676240463b5368d125b72186db14e7a676ccc8695d5751c0c49668fb47826040516103eb91906109c2565b60405180910390a16103fb6107b9565b80518335905261041160408401602085016108bf565b81516001600160a01b0390911660209091015261043460608401604085016108bf565b81516001600160a01b03909116604091820152815160608086013591015282015151610464906080850135610b2f565b60208083015191909152604083015101516104839060a0850135610b2f565b6020808301805190910191909152805160006040909101528051436060909101525160e08401356080909101526104c08335610100850135610b2f565b602082015160a001526104d2816104d7565b505050565b60408051602081019091526000815260208201516080015182516060015111156105e5576020820151608001518251606001516105149190610b66565b815260408051610120810182526000808252602080830182815283850183815260608086018581526080870186815260a080890188815260c08a0189815260e08b018a81526101008c019a8b528e51518c528e518a01516001600160a01b039081169099528e518d01519098169096528c518501519093528b870180515190925281518701519092528951909352825190910151909252510151909152915190916105c491600591849101610aa7565b60408051601f198184030181529190528051602090910120600055506101b7565b604080516101008101825260008183018181526060808401838152608080860185815260a080880187815260c0890188815260e08a01898152888b526020808c018b90528e51519099528d518901516001600160a01b039081169097528d518c01519096169093528b87018051519091528051870151909252905101519091528551928301909552918152825193840151939091015190921480835290916104d291839190156107385781516020810151606082015191516001600160a01b03909116916108fc916106b79190610b47565b6040518115909202916000818181858888f193505050501580156106df573d6000803e3d6000fd5b5081516040810151608082015191516001600160a01b03909116916108fc916107089190610b47565b6040518115909202916000818181858888f19350505050158015610730573d6000803e3d6000fd5b506000805533ff5b805160009061076257825160808101516060909101511161075a57600161075d565b60005b610765565b60035b146107755781516040015161077c565b8151602001515b825160a001516040516001600160a01b03929092169181156108fc0291906000818181858888f19350505050158015610730573d6000803e3d6000fd5b6040805160c0810182526000918101828152606082018390526080820183905260a082019290925290819081526020016108246040518060c0016040528060008152602001600081526020016000151581526020016000815260200160008152602001600081525090565b905290565b6040805160a08101909152600060608201818152608083019190915281908152602001610869604051806040016040528060008152602001600081525090565b8152602001610824604051806040016040528060008152602001600081525090565b80356001600160a01b03811681146108a257600080fd5b919050565b600061014082840312156108b9578081fd5b50919050565b6000602082840312156108d0578081fd5b6108d98261088b565b9392505050565b600061014082840312156108f2578081fd5b6108d983836108a7565b600061faa082840312156108b9578081fd5b806000805b6103e881101561094457823560ff811680821461092e578384fd5b8652506020948501949290920191600101610913565b5050505050565b8035825261095b6020820161088b565b6001600160a01b038181166020850152806109786040850161088b565b1660408501525050606081013560608301526080810135608083015260a081013560a083015260c081013560c083015260e081013560e08301526101008082013581840152505050565b61014081016109d1828461094b565b61012092830135919092015290565b61014081016109ef828461094b565b61012080840135801515808214610a0557600080fd5b808386015250505092915050565b813581526020808301359082015261faa08101610a36604080840190850161090e565b617d40610a4781840182860161090e565b5061fa40610a5681850161088b565b6001600160a01b038181169285019290925261fa609180610a7887850161088b565b168386015250505061fa8080840135818401525092915050565b82815261014081016108d9602083018461094b565b6000610140820190508382528251602083015260018060a01b0360208401511660408301526040830151610ae660608401826001600160a01b03169052565b5060608301516080830152608083015160a083015260a083015160c083015260c083015160e083015260e083015161010081818501528085015161012085015250509392505050565b60008219821115610b4257610b42610b7d565b500190565b6000816000190483118215151615610b6157610b61610b7d565b500290565b600082821015610b7857610b78610b7d565b500390565b634e487b7160e01b600052601160045260246000fdfea264697066735822122070f4c60d1d8aa869cc2382084e0065a5ffce3bbd94195e2919a38c8f363e5c7a64736f6c63430008020033`,
   deployMode: `DM_constructor`,
   views: {
     }
