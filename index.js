@@ -61,12 +61,9 @@ class Player extends React.Component {
   }
 
   seeOutcome(i, ACount, BCount) { 
-    window.console.log('ForA Total Count= ' + ACount.toString());
-    window.console.log('ForB Total Count= ' + BCount);
     const output = intToVote[i];
     const forA = ACount.toString();
     const forB = BCount.toString();
-    window.console.log(output);
     this.setState({view: 'Done', forA, forB, outcome: output }); }
   informTimeout() { this.setState({view: 'Timeout'}); }
   playHand(vote) { this.state.resolveHandP(vote); }
