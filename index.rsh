@@ -53,26 +53,20 @@ export const main =
         const bobProposal = declassify(interact.bobProposal); 
         const aliceAddr = declassify(interact.aliceAddr);
         const bobAddr = declassify(interact.bobAddr);
-        const DUDU = declassify(interact.token()); 
+        //const DUDU = declassify(interact.token()); 
         // const deadline = declassify(interact.setDeadline());
       });
       
-      Pollster.publish(wager, aliceProposal, bobProposal, aliceAddr, bobAddr, DUDU);
-/*
-        Voter.only(() => {
-          const voted = false;
-        })
+      Pollster.publish(wager, aliceProposal, bobProposal, aliceAddr, bobAddr);
 
-        Voter.publish(voted);
-*/
       //timeRemaining and keepGoing takes the deadline as input for makeDeadline
       const [ timeRemaining, keepGoing ] = makeDeadline(10);
 
         // paralleReduce function for running multiple voters at same time
     const [ forA, forB ] = parallelReduce([ 0, 0])
-        .invariant(balance(DUDU) == ((forA + forB) * wager) && balance()==0 )
+        .invariant(balance() == ((forA + forB) * wager) )
         .while( keepGoing() )
-        .paySpec([DUDU])
+       // .paySpec([DUDU])
         .case(
           //PART_EXPR
           Voter,
@@ -82,8 +76,8 @@ export const main =
               if (declassify(interact.acceptWager(wager, aliceProposal ,bobProposal)) ) 
               {
                 return { 
-                         when: declassify(interact.shouldVote()), 
-                         //when: true,
+                         //when: declassify(interact.shouldVote()), 
+                         when: true,
                          msg: declassify(interact.getVote(aliceProposal, bobProposal)) 
                       }
               } else {
@@ -94,12 +88,13 @@ export const main =
           }),
           //PAY_EXPR,
           //? what is _ mean? 
-          ( (_) => [0, [wager, DUDU]]),
+          ( (_) => wager),
+          //( (_) => [0, [wager, DUDU]]),
           //CONSENSUS_EXPR
           ( (VoteInt) => {
             // if voteInt=0, which is Alice, nA=1, nB=0, else nA=0 nB=1
-            const [ fornA, fornB ] = VoteInt == 0 ? [1,0] : [0,1];
-            const [ Acount, Bcount] = [ forA + fornA, forB + fornB ];
+            const [ VforA, VforB ] = VoteInt == 0 ? [1,0] : [0,1];
+            const [ Acount, Bcount] = [ forA + VforA, forB + VforB ];
             const voter = this;
             // voters call voterWas function pass in self as voter 
             Voter.only(() => {
@@ -110,9 +105,9 @@ export const main =
           });
 
            // if voteInt=0, which is Alice, nA=1, nB=0, else nA=0 nB=1
-           const [ nA, nB ] = VoteInt == 0 ? [1,0] : [0,1];
+           //const [ nA, nB ] = VoteInt == 0 ? [1,0] : [0,1];
             //return total count forA and forB
-            return [ forA + nA, forB + nB ];
+            return [ Acount, Bcount];
           }))
          .timeout(
            //DEADLINE
@@ -145,17 +140,18 @@ export const main =
         if( forA == forB)
         {
           //Tie score divide funds
-          //transfer(wager * forA).to(aliceAddr);
-          //transfer(wager * forB).to(bobAddr);
+          transfer(wager * forA).to(aliceAddr);
+          transfer(wager * forB).to(bobAddr);
 
-          transfer(wager * forA, DUDU).to(aliceAddr);
-          transfer(wager * forB, DUDU).to(bobAddr);
+          //transfer(wager * forA, DUDU).to(aliceAddr);
+         // transfer(wager * forB, DUDU).to(bobAddr);
         }
         else{
         // set winner address, then transfer ballance
         const winner = outcome == ALICE_PROP ? aliceAddr : bobAddr;
+        transfer(balance()).to(winner);
         // concensus step with commit
-        transfer(balance(DUDU), DUDU).to(winner);
+        //transfer(balance(DUDU), DUDU).to(winner);
         }
         commit();
 

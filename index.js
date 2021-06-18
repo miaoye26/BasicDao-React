@@ -104,7 +104,7 @@ class Deployer extends Player {
     this.setState({view: 'WaitingForAttacher', ctcInfoStr});
   }
   token(){
-    return '0xcc286d4cbbfc73c5642b7528309207aab59d366f'
+    return 'to0xcc286d4cbbfc73c5642b7528309207aab59d366f'
   }
   render() { return renderView(this, DeployerViews); }
 }
@@ -124,22 +124,23 @@ class Attacher extends Player {
   async acceptWager(wagerAtomic, aliceProposal ,bobProposal ) { // Fun([UInt] Bytes, Bytes, Bool)
     const wager = reach.formatCurrency(wagerAtomic, 4);
     //if(!this.voted)
-    {
     //how to return return to Bool with the promise
       return await new Promise(resolveAcceptedP => {
         window.console.log('acceptWager-voted=' + this.voted);
         this.setState({view: 'AcceptTerms', wager, aliceProposal, bobProposal, resolveAcceptedP});
       });
-    }
-
   }
   termsAccepted() {
     this.state.resolveAcceptedP();
     this.setState({view: 'WaitingForTurn'});
-    return true;
   }
+  WaitforResult() {
+    this.state.resolveAcceptedP();
+    this.setState({view: 'WaitingForResult'});
+  }
+  
   voterWas(voterAddr, forA, forB) {
-    if (reach.addressEq(voterAddr, this.props.acc.networkAccount)){
+    //if (reach.addressEq(voterAddr, this.props.acc.networkAccount)){
       this.forA = forA;
       this.forB = forB;
       window.console.log('VoteWas1-voted=' + this.voted + ' from: ' + voterAddr);
@@ -147,7 +148,7 @@ class Attacher extends Player {
       window.console.log('VoteWas2-voted=' + this.voted + ' from: ' + voterAddr);
       window.console.log('forA=' + forA);
       window.console.log('forB=' + forB);
-    }
+   // }
 
  }
  shouldVote() { 

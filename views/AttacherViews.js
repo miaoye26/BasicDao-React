@@ -69,6 +69,14 @@ exports.AcceptTerms = class extends React.Component {
             parent.termsAccepted();
           }}
         >Accept terms and pay wager</button>
+                <br />
+        <button
+          disabled={disabled}
+          onClick={() => {
+            this.setState({disabled: true});
+            parent.WaitforResult();
+          }}
+        >That is it for me! Wait for final results</button>
       </div>
     );
   }
@@ -80,6 +88,18 @@ exports.WaitingForTurn = class extends React.Component {
       <div>
         Waiting for the other player...
         <br />Think about which proposal you want to vote for.
+      </div>
+    );
+  }
+}
+
+exports.WaitingForResult = class extends React.Component {
+  render() {
+    return (
+      <div>
+        Waiting for the final results...
+        <br />
+        Outcome will be displayed at the end of the voting window.
       </div>
     );
   }
