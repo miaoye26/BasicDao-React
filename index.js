@@ -94,15 +94,14 @@ class Deployer extends Player {
     this.aliceAddr = this.state.aliceAddr;
     this.bobAddr = this.state.bobAddr;
     this.voted = false;
+    this.DUDU = "0xcc286d4cbbfc73c5642b7528309207aab59d366f";
 
     backend.Pollster(ctc, this);
      //backend.Pollster(ctc, { token: '0xcc286d4cbbfc73c5642b7528309207aab59d366f' });
     const ctcInfoStr = JSON.stringify(await ctc.getInfo(), null, 2);
     this.setState({view: 'WaitingForAttacher', ctcInfoStr});
   }
-  token(){
-    return 'to0xcc286d4cbbfc73c5642b7528309207aab59d366f'
-  }
+
   render() { return renderView(this, DeployerViews); }
 }
 

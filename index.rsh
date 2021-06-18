@@ -21,7 +21,7 @@ const Player_Pollster =
         aliceAddr: Address,
         bobAddr: Address, 
         setDeadline: Fun([], UInt),
-        token: Fun([], Token)
+        DUDU: Token,
       };
 
 const Player_Voter =
@@ -30,7 +30,8 @@ const Player_Voter =
         voterWas: Fun([Address, UInt, UInt], Null),
         acceptWager: Fun([UInt, Bytes(1000), Bytes(1000)], Null) };
 
-//const DEADLINE = 10;
+const DEADLINE = 10;
+
 export const main =
   Reach.App(
     {},
@@ -53,14 +54,14 @@ export const main =
         const bobProposal = declassify(interact.bobProposal); 
         const aliceAddr = declassify(interact.aliceAddr);
         const bobAddr = declassify(interact.bobAddr);
-        const DUDU = declassify(interact.token()); 
+        const DUDU = declassify(interact.DUDU); 
         // const deadline = declassify(interact.setDeadline());
       });
       
       Pollster.publish(wager, aliceProposal, bobProposal, aliceAddr, bobAddr, DUDU);
 
       //timeRemaining and keepGoing takes the deadline as input for makeDeadline
-      const [ timeRemaining, keepGoing ] = makeDeadline(10);
+      const [ timeRemaining, keepGoing ] = makeDeadline(DEADLINE);
 
         // paralleReduce function for running multiple voters at same time
     const [ forA, forB ] = parallelReduce([ 0, 0])
