@@ -10,12 +10,13 @@ exports.Wrapper = class extends React.Component {
     const {content} = this.props;
     return (
       <div className="Deployer">
-        <h2>Pollster (Deployer)</h2>
+        <h2>Proposing a New Project (Deployer)</h2>
         {content}
       </div>
     );
   }
 }
+
 
 exports.SetWager = class extends React.Component {
   render() {
@@ -23,6 +24,8 @@ exports.SetWager = class extends React.Component {
     const wager = (this.state || {}).wager || defaultWager;
     return (
       <div>
+        <p>How much funding are you requesting for your project in DUDU coin?</p>
+        <br/>
         <input
           type='number'
           placeholder={defaultWager}
@@ -31,7 +34,7 @@ exports.SetWager = class extends React.Component {
         <br />
         <button
           onClick={() => parent.setWager(wager)}
-        >Set wager</button>
+        >Set Requested Funds</button>
       </div>
     );
   }
@@ -43,6 +46,7 @@ exports.SetDeadline = class extends React.Component {
     const deadline = (this.state || {}).deadline || defaultDeadline;
     return (
       <div>
+         <p>How long is the voting window?(number of blocks)</p>
         <input
           type='number'
           placeholder={defaultDeadline}
@@ -51,7 +55,7 @@ exports.SetDeadline = class extends React.Component {
         <br />
         <button
           onClick={() => parent.setDeadline(deadline)}
-        >Set Deadline</button>
+        >Set Time Window</button>
       </div>
     );
   }
@@ -60,7 +64,7 @@ exports.SetDeadline = class extends React.Component {
 exports.SetAliceProposal = class extends React.Component {
   render() {
     const {parent} = this.props;
-    const aliceProposal = (this.state || {}).aliceProposal || 'Bet on NBA Games Tonight';
+    const aliceProposal = (this.state || {}).aliceProposal || 'The greatest project of mankind';
     return (
       <div>
         <input
@@ -78,22 +82,22 @@ exports.SetAliceProposal = class extends React.Component {
   }
 }
 
-exports.SetBobProposal = class extends React.Component {
+exports.SetProjectName = class extends React.Component {
   render() {
     const {parent} = this.props;
-    const bobProposal = (this.state || {}).bobProposal || 'Bet on Europe Cup Games Tonight';
+    const projectName = (this.state || {}).projectName || 'The Manhattan Project';
     return (
       <div>
         <input
           type='text'
-          placeholder={'Bob Proposal'}
-          onChange={(e) => this.setState({bobProposal: e.currentTarget.value})}
+          placeholder={'Project Name'}
+          onChange={(e) => this.setState({projectName: e.currentTarget.value})}
         /> 
         <br />
         <br />
         <button
-          onClick={() => parent.setBobProposal(bobProposal)}
-        >Set Bos's Proposal</button>
+          onClick={() => parent.setProjectName(projectName)}
+        >Set Project Name</button>
       </div>
     );
   }
@@ -106,7 +110,7 @@ exports.SetAliceAddr = class extends React.Component {
     const {ctcAliceAddr} = this.state || {};
     return (
       <div>
-        Please paste the Alice Address info:
+        Please enter your Address for sending the Requested Funds:
         <br />
         <textarea spellCheck="false"
           className='ContractInfo'
@@ -117,7 +121,7 @@ exports.SetAliceAddr = class extends React.Component {
         <button
           disabled={!ctcAliceAddr}
           onClick={() => parent.setAliceAddr(ctcAliceAddr)}
-        >Set Alice Deposit Address</button>
+        >Set Deposit Address</button>
       </div>
     );
   }
@@ -148,14 +152,14 @@ exports.SetBobAddr = class extends React.Component {
 
 exports.Deploy = class extends React.Component {
   render() {
-    const {parent, wager, aliceProposal, bobProposal, standardUnit} = this.props;
+    const {parent, wager, aliceProposal, projectName, standardUnit} = this.props;
     return (
       <div>
-        Wager (pay to deploy): <strong>{wager}</strong> {standardUnit}
+        Project Name: <strong>{projectName}</strong>
         <br />
-        Alice Proposal: <strong>{aliceProposal}</strong>
+        Project Proposal: <strong>{aliceProposal}</strong>
         <br />
-        Bob Proposal: <strong>{bobProposal}</strong>
+        Requested Funds(DUDU Coin): <strong>{wager}</strong> {standardUnit}
         <br />
         <br />
         <button
@@ -168,15 +172,15 @@ exports.Deploy = class extends React.Component {
 
 exports.Deploying = class extends React.Component {
   render() {
-    const { wager, aliceProposal, bobProposal, standardUnit} = this.props;
+    const { wager, aliceProposal, projectName, standardUnit} = this.props;
     return (
       
       <div>
-         Wager (pay to vote): <strong>{wager}</strong> {standardUnit}
+        Project Name: <strong>{projectName}</strong>
         <br />
-        Alice Proposal: <strong>{aliceProposal}</strong>
+        Project Proposal: <strong>{aliceProposal}</strong>
         <br />
-        Bob Proposal: <strong>{bobProposal}</strong>
+         Requested Funds(DUDU Coin): <strong>{wager}</strong> {standardUnit}
         <br />
         <br />
         Deploying... please wait.</div>

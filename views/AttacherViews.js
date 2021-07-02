@@ -51,16 +51,16 @@ exports.Attaching = class extends React.Component {
 
 exports.AcceptTerms = class extends React.Component {
   render() {
-    const {wager, aliceProposal, bobProposal, standardUnit, parent} = this.props;
+    const {wager, aliceProposal, projectName, standardUnit, parent} = this.props;
     const {disabled} = this.state || {};
     return (
       <div>
         The terms of the DAO Vote are:
-        <br /> Wager: {wager} {standardUnit}
+        <br /> Wager: {wager} {standardUnit}     
+        <br />
+        Project Name: <strong>{projectName}</strong>
         <br />
         Alice Proposal: <strong>{aliceProposal}</strong>
-        <br />
-        Bob Proposal: <strong>{bobProposal}</strong>
         <br />
         <button
           disabled={disabled}
@@ -76,7 +76,7 @@ exports.AcceptTerms = class extends React.Component {
             this.setState({disabled: true});
             parent.WaitforResult();
           }}
-        >I'm All Done! Wait for final results</button>
+        >Rage Quit! I'm out!</button>
       </div>
     );
   }

@@ -8,7 +8,7 @@ exports.Wrapper = class extends React.Component {
     return (
       <div className="App">
         <header className="App-header" id="root">
-          <h1>DAO-Multi Voting DApp</h1>
+          <h1>Moloach DAO DApp</h1>
           {content}
         </header>
       </div>
@@ -63,8 +63,9 @@ exports.DeployerOrAttacher = class extends React.Component {
         <p>
           <button
             onClick={() => parent.selectDeployer()}
-          >Pollster (Deployer)</button>
-          <br />Pollster Set the wager to vote, Time Window, Proposals and Fund Addresses to Sent, and deploy the contract.
+          >New Proposal (Deployer)</button>
+          <br />Deployer Propose a new project with the following:
+          <br />Project Name, Project Details, Funding Address, Requested Funds, and Time Window to Vote, then deploy the contract.
         </p>
         <p>
           <button

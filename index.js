@@ -13,9 +13,9 @@ reach.setSignStrategy('AlgoSigner');
 reach.setProviderByName('TestNet');
 */
 
-const VoteToInt = {'ALICE_PROP': 0, 'BOB_PROP': 1};
-const intToVote = ['Proposal of Alice reached consensus, funding was sent to the winner!',
-                   'Proposal of Bob reached consensus, funding was sent to the winner!',
+const VoteToInt = {'No_PROP': 0, 'Yes_PROP': 1};
+const intToVote = ['Proposal has Not reached consensus, funding was sent to Master Pool!',
+                   'Proposal has reached consensus, total funding was sent to the Proposer!',              
                    'There has been a timeout!',
                    'There has been a tie score, funding are being evently divided and sent to both party!'];
 
@@ -51,11 +51,11 @@ class App extends React.Component {
 
 class Player extends React.Component {
   random() { return reach.hasRandom.random(); }
-  async getVote(aliceProposal, bobProposal, isTimeOut) { //  getVote: Fun([Bytes(1000), Bytes(1000)], UInt),
+  async getVote(aliceProposal, projectName, isTimeOut) { //  getVote: Fun([Bytes(1000), Bytes(1000)], UInt),
     if(isTimeOut === false)
     {
     const vote = await new Promise(resolveVoteP => {
-      this.setState({view: 'GetVote', playable: true, aliceProposal, bobProposal, resolveVoteP});
+      this.setState({view: 'GetVote', playable: true, aliceProposal, projectName, resolveVoteP});
       this.voted = true;
     });
     this.setState({view: 'WaitingForResults', vote});
@@ -67,11 +67,11 @@ class Player extends React.Component {
   }
 }
 
-  seeOutcome(i, ACount, BCount) { 
+  seeOutcome(i, YesCount, NoCount) { 
     const output = intToVote[i];
-    const forA = ACount.toString();
-    const forB = BCount.toString();
-    this.setState({view: 'Done', forA, forB, outcome: output }); }
+    const forYes = YesCount.toString();
+    const forNo = NoCount.toString();
+    this.setState({view: 'Done', forYes, forNo, outcome: output }); }
   informTimeout() { this.setState({view: 'Timeout'}); }
   VoteProp(vote) { this.state.resolveVoteP(vote); }
   log(i) { window.alert(i); }
@@ -80,22 +80,22 @@ class Player extends React.Component {
 class Deployer extends Player {
   constructor(props) {
     super(props);
-    this.state = {view: 'SetWager'};
+    this.state = {view: 'SetProjectName'};
   }
-  setWager(wager) { this.setState({view: 'SetDeadline', wager}); }
-  setDeadline(deadline) { this.setState({view: 'SetAliceProposal', deadline}); }
-  setAliceProposal(aliceProposal) { this.setState({view: 'SetBobProposal', aliceProposal}); }
-  setBobProposal(bobProposal) { this.setState({view: 'SetAliceAddr', bobProposal}); }
 
-  setAliceAddr(aliceAddr) { this.setState({view: 'SetBobAddr', aliceAddr}); }
-  setBobAddr(bobAddr) { this.setState({view: 'Deploy', bobAddr}); }
+  setProjectName(projectName) { this.setState({view: 'SetAliceProposal', projectName}); }
+  setAliceProposal(aliceProposal) { this.setState({view: 'SetAliceAddr', aliceProposal}); }
+  setAliceAddr(aliceAddr) { this.setState({view: 'SetWager', aliceAddr}); }
+  setWager(wager) { this.setState({view: 'SetDeadline', wager}); }
+  setDeadline(deadline) { this.setState({view: 'Deploy', deadline}); }
+  //setBobAddr(bobAddr) { this.setState({view: 'Deploy', bobAddr}); }
 
   async deploy() {
     const ctc = this.props.acc.deploy(backend);
     this.setState({view: 'Deploying', ctc});
     this.wager = reach.parseCurrency(this.state.wager); // UInt
     this.aliceProposal = this.state.aliceProposal;
-    this.bobProposal = this.state.bobProposal;
+    this.projectName = this.state.projectName;
     this.deadline = this.state.deadline;
     this.aliceAddr = this.state.aliceAddr;
     this.bobAddr = this.state.bobAddr;
@@ -124,11 +124,11 @@ class Attacher extends Player {
     this.setState({view: 'Attaching'});
     backend.Voter(ctc, this);
   }
-  async acceptWager(wagerAtomic, aliceProposal ,bobProposal ) { // Fun([UInt] Bytes, Bytes, Bool)
+  async acceptWager(wagerAtomic, aliceProposal ,projectName ) { // Fun([UInt] Bytes, Bytes, Bool)
     const wager = reach.formatCurrency(wagerAtomic, 4);
     const accepted = await new Promise(resolveAcceptedP => {
         window.console.log('acceptWager-voted=' + this.voted);
-        this.setState({view: 'AcceptTerms', wager, aliceProposal, bobProposal, resolveAcceptedP});
+        this.setState({view: 'AcceptTerms', wager, aliceProposal, projectName, resolveAcceptedP});
       });
       if (accepted === 'ACCEPT')
       {
